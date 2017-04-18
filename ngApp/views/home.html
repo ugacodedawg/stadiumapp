@@ -1,4 +1,57 @@
-<h2>Home</h2>
-<p>
-    {{controller.message}}
-</p>
+<h2>Stadiums</h2>
+
+<div class="container">
+    <section class="jumbotron">
+        <div class="container">
+            <h1><i class="fa fa-trophy" aria-hidden="true"></i> Welcome to aWEna!</h1>
+            <p>Our fans travel to sporting arenas/stadiums/parks all over the USA.  Join the community and add your favorite.</p>
+        </div>
+    </section>
+    <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" heading="Add Stadium">
+      <form>
+        <div class="form-group">
+          <label>Stadium Name:</label>
+          <input ng-model="controller.stadium.name" class="form-control" placeholder="Stadium Name" />
+        </div>
+        <div class="form-group">
+          <label>Sport:</label>
+          <input ng-model="controller.stadium.sport" class="form-control" placeholder="Sport" />
+        </div>
+        <!-- <div class="form-group">
+          <label>Image URL:</label>
+          <input ng-model="controller.file.url" class="form-control" />
+        </div> -->
+        <button ng-click="controller.save()" class="btn btn-primary">Add Stadium</button>
+        <!-- <span><strong>
+            {{controller.message}}
+        </strong></span>
+        <button ng-click="controller.pickFile()">Upload</button>
+
+            <h2>{{controller.file.filename}}</h2>
+            <img ng-src="{{controller.file.url | fpConvert:{w: 400} }}" alt="{{controller.file.filename}}" /> -->
+      </form>
+    </div>
+</div>
+
+<h2>Stadiums in the Database</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Stadium Name</th>
+      <th>Sport</th>
+      <th>Image URL</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="stadium in controller.stadiums">
+    <td>{{stadium.name}}</td>
+    <td>{{stadium.sport}}</td>
+    <td><a href="{{stadium.url}}">{{stadium.url}}</a></td>
+    <td><a class="btn btn-info" href="/edit/{{stadium._id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+    <td><a class="btn btn-danger" href="#" ng-click="controller.remove(stadium._id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+  </tr>
+</tbody>
+</table>

@@ -13,10 +13,10 @@ namespace stadiumapp {
                 controller: stadiumapp.Controllers.HomeController,
                 controllerAs: 'controller'
             })
-            .state('about', {
-                url: '/about',
-                templateUrl: '/ngApp/views/about.html',
-                controller: stadiumapp.Controllers.AboutController,
+            .state('edit', {
+                url: '/edit/:id',
+                templateUrl: '/ngApp/views/edit.html',
+                controller: stadiumapp.Controllers.EditController,
                 controllerAs: 'controller'
             })
             .state('notFound', {
@@ -31,6 +31,6 @@ namespace stadiumapp {
         $locationProvider.html5Mode(true);
     });
 
-    
+
 
 }

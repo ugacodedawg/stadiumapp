@@ -8,6 +8,9 @@ import * as ejs from 'ejs';
 
 import routes from './routes/index';
 import users from './routes/users';
+import stadiums from './api/stadiums';
+import Database from './db';
+Database.connect();
 
 let app = express();
 
@@ -28,7 +31,7 @@ app.use('/api', express.static(path.join(__dirname, 'api')));
 
 app.use('/', routes);
 app.use('/users', users);
-
+app.use('/api/stadiums', stadiums);
 
 // redirect 404 to home for the sake of AngularJS client-side routes
 app.get('/*', function(req, res, next) {
