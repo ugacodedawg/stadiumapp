@@ -3,11 +3,16 @@ namespace stadiumapp.Controllers {
   export class HomeController {
       public stadiums;
       public stadium;
+      //Filestack
+      public message = 'Click Upload to select a photo from your local computer, OR take a new picture, OR from 15+ cloud-based sites/apps.';
+      public file;
 
       public save() {
+        this.stadium.url = this.file.url;
         this.stadiumService.save(this.stadium).then(() => {
         this.stadiums = this.stadiumService.list();
         this.stadium = null;
+        this.file = null;
         });
       }
 
@@ -17,7 +22,23 @@ namespace stadiumapp.Controllers {
         });
       }
 
-      constructor(private stadiumService) {
+      //Filestack
+      public pickFile() {
+          this.filepickerService.pick(
+              { mimetype: 'image/*' },
+              this.fileUploaded.bind(this)
+          );
+      }
+
+      public fileUploaded(file) {
+          // save file url to database
+          this.file = file;
+          console.log(this.file);
+          this.$scope.$apply(); // force page to update
+      }
+
+      constructor(private stadiumService:stadiumapp.Services.StadiumService,
+      private filepickerService, private $scope: ng.IScope) {
         this.stadiums = stadiumService.list();
       }
   }

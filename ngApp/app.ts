@@ -1,10 +1,12 @@
 namespace stadiumapp {
 
-    angular.module('stadiumapp', ['ui.router', 'ngResource', 'ui.bootstrap']).config((
+    angular.module('stadiumapp', ['ui.router', 'ngResource', 'angular-filepicker', 'ui.bootstrap']).config((
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider,
-        $locationProvider: ng.ILocationProvider
+        $locationProvider: ng.ILocationProvider,
+        filepickerProvider
     ) => {
+      filepickerProvider.setKey('AJ1qzKq0iSJ6ocUxOHi6Zz');
         // Define routes
         $stateProvider
             .state('home', {
