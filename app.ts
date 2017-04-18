@@ -6,8 +6,15 @@ import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as ejs from 'ejs';
 
+import * as mongoose from 'mongoose';
+import * as passport from 'passport';
+
 import routes from './routes/index';
 import users from './routes/users';
+
+require('./models/user');
+require('./config/passport');
+
 import stadiums from './api/stadiums';
 import Database from './db';
 Database.connect();
@@ -29,8 +36,12 @@ app.use('/bower_components', express.static(path.join(__dirname, 'bower_componen
 app.use('/ngApp', express.static(path.join(__dirname, 'ngApp')));
 app.use('/api', express.static(path.join(__dirname, 'api')));
 
+app.use(passport.initialize());
+mongoose.connect('mongodb://webuser:Secret123!@ds147599.mlab.com:47599/cctrav');
+app.use('/userRoutes/api/', users);
+
 app.use('/', routes);
-app.use('/users', users);
+// app.use('/users', users);
 app.use('/api/stadiums', stadiums);
 
 // redirect 404 to home for the sake of AngularJS client-side routes

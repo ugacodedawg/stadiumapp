@@ -15,6 +15,18 @@ namespace stadiumapp {
                 controller: stadiumapp.Controllers.HomeController,
                 controllerAs: 'controller'
             })
+            .state('login', {
+                url: '/login',
+                templateUrl: '/ngApp/views/login.html',
+                controller: stadiumapp.Controllers.LoginController,
+                controllerAs: 'controller'
+            })
+            .state('register', {
+                url: '/register',
+                templateUrl: '/ngApp/views/register.html',
+                controller: stadiumapp.Controllers.RegisterController,
+                controllerAs: 'controller'
+            })
             .state('edit', {
                 url: '/edit/:id',
                 templateUrl: '/ngApp/views/edit.html',
