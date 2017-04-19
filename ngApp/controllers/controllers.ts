@@ -1,13 +1,19 @@
+let token = window.localStorage['token'];
+
 namespace stadiumapp.Controllers {
 
   export class HomeController {
       public stadiums;
       public stadium;
+      public author;
       //Filestack
       public message = 'Click Upload to select a photo from your local computer, OR take a new picture, OR from 15+ cloud-based sites/apps.';
       public file;
 
       public save() {
+        let payload = JSON.parse(window.atob(token.split('.')[1]));
+        this.stadium.owner_id = payload.id;
+        this.stadium.username = payload.username;
         this.stadium.url = this.file.url;
         this.stadiumService.save(this.stadium).then(() => {
         this.stadiums = this.stadiumService.list();
@@ -33,7 +39,6 @@ namespace stadiumapp.Controllers {
       public fileUploaded(file) {
           // save file url to database
           this.file = file;
-          console.log(this.file);
           this.$scope.$apply(); // force page to update
       }
 
@@ -49,7 +54,8 @@ namespace stadiumapp.Controllers {
       public login() {
         this.userService.loginUser(this.userInfo).then((data) => {
           this.$window.localStorage.setItem("token", JSON.stringify(data.token));
-          alert('login successful');
+          let payload = JSON.parse(window.atob(token.split('.')[1]));
+          alert('Login Successful -- Welcome back, ' + payload.username + '!');
         })
       }
 

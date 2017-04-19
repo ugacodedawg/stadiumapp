@@ -51,7 +51,8 @@
     <td>{{stadium.name}}</td>
     <td>{{stadium.sport}}</td>
     <td><a href="{{stadium.url}}">{{stadium.url}}</a></td>
-    <td>{{stadium.author.username}}</td>
+    <!-- <td>{{stadium.owner_id}}</td> -->
+    <td>{{stadium.username}}</td>
     <td><a class="btn btn-info" href="/edit/{{stadium._id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
     <td><a class="btn btn-danger" href="#" ng-click="controller.remove(stadium._id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
   </tr>
