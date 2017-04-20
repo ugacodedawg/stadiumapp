@@ -10,4 +10,8 @@ router.get('/landing', function(req, res, next) {
   res.render('landing');
 });
 
+router.get('/logout', function(req, res, next) {
+  res.send("COOL!");
+});
+
 export default router;

@@ -40,10 +40,11 @@ router.post('/Login/Local',(req, res, next) => {
   })(req, res, next);
 });
 
-// router.get('/logout', function(req, res) {
-//     req.logout();
-//     //req.flash("success", "Successfully logged out.");
-//     res.redirect('/');
-// });
+router.get('/Logout', function(req, res) {
+    //req.logout();
+    alert("Goodbye");
+    //req.flash("success", "Successfully logged out.");
+    res.redirect('/');
+});
 
 export default router;

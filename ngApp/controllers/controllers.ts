@@ -88,6 +88,8 @@ namespace stadiumapp.Controllers {
       public stadiumId;
 
       public save() {
+        let payload = JSON.parse(window.atob(token.split('.')[1]));
+        this.stadium.username = payload.username;
         this.stadium._id = this.stadiumId;
         this.stadiumService.save(this.stadium).then(() => {
           this.$state.go('home');
