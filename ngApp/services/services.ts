@@ -23,7 +23,6 @@ namespace stadiumapp.Services {
   export class UserService {
     public LoginResource;
     public SignUpResource;
-    public LogoutResource;
 
     public registerUser(userObj) {
       return this.SignUpResource.save(userObj).$promise;
@@ -33,14 +32,10 @@ namespace stadiumapp.Services {
       return this.LoginResource.save(userInfo).$promise;
     }
 
-    public logoutUser(userInfo) {
-      return this.LogoutResource.logout(userInfo).$promise;
-    }
-
     constructor(private $resource:ng.resource.IResourceService){
       this.LoginResource = this.$resource('/userRoutes/api/Login/Local');
       this.SignUpResource = this.$resource('/userRoutes/api/Register');
-      this.LogoutResource = this.$resource('/userRoutes/api/Logout');
+      // this.LogoutResource = this.$resource('/userRoutes/api/Logout');
     }
 
   }

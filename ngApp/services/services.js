@@ -1,0 +1,42 @@
+var stadiumapp;
+(function (stadiumapp) {
+    var Services;
+    (function (Services) {
+        var StadiumService = (function () {
+            function StadiumService($resource) {
+                this.stadiumResource = $resource('/api/stadiums/:id');
+            }
+            StadiumService.prototype.get = function (id) {
+                return this.stadiumResource.get({ id: id });
+            };
+            StadiumService.prototype.list = function () {
+                return this.stadiumResource.query();
+            };
+            StadiumService.prototype.save = function (stadium) {
+                return this.stadiumResource.save(stadium).$promise;
+            };
+            StadiumService.prototype.remove = function (id) {
+                return this.stadiumResource.remove({ id: id }).$promise;
+            };
+            return StadiumService;
+        }());
+        Services.StadiumService = StadiumService;
+        angular.module('stadiumapp').service('stadiumService', StadiumService);
+        var UserService = (function () {
+            function UserService($resource) {
+                this.$resource = $resource;
+                this.LoginResource = this.$resource('/userRoutes/api/Login/Local');
+                this.SignUpResource = this.$resource('/userRoutes/api/Register');
+            }
+            UserService.prototype.registerUser = function (userObj) {
+                return this.SignUpResource.save(userObj).$promise;
+            };
+            UserService.prototype.loginUser = function (userInfo) {
+                return this.LoginResource.save(userInfo).$promise;
+            };
+            return UserService;
+        }());
+        Services.UserService = UserService;
+        angular.module('stadiumapp').service('userService', UserService);
+    })(Services = stadiumapp.Services || (stadiumapp.Services = {}));
+})(stadiumapp || (stadiumapp = {}));

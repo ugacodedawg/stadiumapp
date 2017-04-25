@@ -1,5 +1,3 @@
-let token = window.localStorage['token'];
-
 namespace stadiumapp.Controllers {
 
   export class HomeController {
@@ -11,6 +9,7 @@ namespace stadiumapp.Controllers {
       public file;
 
       public save() {
+        let token = window.localStorage['token'];
         let payload = JSON.parse(window.atob(token.split('.')[1]));
         this.stadium.owner_id = payload.id;
         this.stadium.username = payload.username;
@@ -53,7 +52,9 @@ namespace stadiumapp.Controllers {
 
       public login() {
         this.userService.loginUser(this.userInfo).then((data) => {
-          this.$window.localStorage.setItem("token", JSON.stringify(data.token));
+          // window.localStorage.setItem("token", JSON.stringify(data.token));
+          window.localStorage['token'] = JSON.stringify(data.token);
+          let token = window.localStorage['token'];
           let payload = JSON.parse(window.atob(token.split('.')[1]));
           alert('Login Successful -- Welcome back, ' + payload.username + '!');
         })
@@ -88,6 +89,7 @@ namespace stadiumapp.Controllers {
       public stadiumId;
 
       public save() {
+        let token = window.localStorage['token'];
         let payload = JSON.parse(window.atob(token.split('.')[1]));
         this.stadium.username = payload.username;
         this.stadium._id = this.stadiumId;
@@ -105,7 +107,17 @@ namespace stadiumapp.Controllers {
       }
   }
 
+    export class NavBarController {
+      public logout() {
+        let token = window.localStorage['token'];
+        localStorage.removeItem('token');
+        this.$state.go('home');
+        alert("Goodbye");
+      }
 
+      constructor(private $state, private $stateParams){}
+    }
+    angular.module('stadiumapp').controller('NavBarController', NavBarController);
 
     export class AboutController {
         public message = 'Hello from the about page!';
