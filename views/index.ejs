@@ -13,22 +13,27 @@
 
 <body>
 
-  <nav class="navbar navbar-default" ng-controller="NavBarController as controller">
-    <div class="container-fluid">
+   <nav class="navbar navbar-default" ng-controller="NavBarController as controller">
+  <!--  <div class="container-fluid">
       <div class="navbar-header">
-        <!-- <a class="navbar-brand" href="/">aWEna!</a> -->
+        <!- <a class="navbar-brand" href="/">aWEna!</a>
         <a class="navbar-brand" href="/"><span style="font-family: 'Lily Script One', cursive;">aWEna!</span></a>
       </div>
-      <div class="collapse navbar-collapse" id="bs-menu">
+      <div class="collapse navbar-collapse" id="bs-menu"> -->
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Sign Up</a></li>
+        <li ng-show="controller.loggedIn">Signed in as {{controller.username}}</li>
+            <li><a href="/login" ng-hide="controller.loggedIn" class="ng-hide">Login</a></li>
+            <li><a href="/register" ng-hide="controller.loggedIn" class="ng-hide">Sign Up</a></li>
             <li><a ng-click="controller.logout()">Logout</a></li>
-        </ul>
+        </ul> <!--
       </div>
     </div>
+  </nav> -->
+  <!-- <nav> -->
+    <span ng-hide="controller.loggedIn" class="ng-hide">Sign Up</span>
+    <span ng-hide="controller.loggedIn" class="ng-hide">Login</span>
+    <span ng-show="controller.loggedIn">{{controller.username}}</span>
   </nav>
-
   <div class="container">
         <h1>stadiumapp</h1>
         <div>

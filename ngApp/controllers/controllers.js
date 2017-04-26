@@ -92,12 +92,23 @@ var stadiumapp;
             function NavBarController($state, $stateParams) {
                 this.$state = $state;
                 this.$stateParams = $stateParams;
+                var token = window.localStorage['http://localhost:3000'];
+                if (token) {
+                    alert(token);
+                    var payload = JSON.parse(window.atob(token.split('.')[1]));
+                    this.username = payload.username;
+                    this.loggedIn = true;
+                }
+                else {
+                    this.loggedIn = false;
+                }
             }
             NavBarController.prototype.logout = function () {
                 var token = window.localStorage['token'];
+                var payload = JSON.parse(window.atob(token.split('.')[1]));
+                alert('Goodbye, ' + payload.username + '! Hope to see you back.');
                 localStorage.removeItem('token');
                 this.$state.go('home');
-                alert("Goodbye");
             };
             return NavBarController;
         }());

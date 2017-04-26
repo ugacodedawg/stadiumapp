@@ -108,19 +108,53 @@ namespace stadiumapp.Controllers {
   }
 
     export class NavBarController {
+      public loggedIn;
+      public username;
+
       public logout() {
         let token = window.localStorage['token'];
+        let payload = JSON.parse(window.atob(token.split('.')[1]));
+        alert('Goodbye, ' + payload.username + '! Hope to see you back.');
         localStorage.removeItem('token');
         this.$state.go('home');
-        alert("Goodbye");
+
       }
 
-      constructor(private $state, private $stateParams){}
+      constructor(private $state, private $stateParams){
+        let token = window.localStorage['http://localhost:3000'];
+        // let token = window.localStorage['token'];
+        // let payload = JSON.parse(window.atob(token.split('.')[1]));
+        // username = payload.username;
+        if(token) {
+          alert(token);
+          let payload = JSON.parse(window.atob(token.split('.')[1]));
+          this.username = payload.username;
+          this.loggedIn = true;
+        } else {
+          this.loggedIn = false;
+        }
+      }
     }
     angular.module('stadiumapp').controller('NavBarController', NavBarController);
 
     export class AboutController {
         public message = 'Hello from the about page!';
     }
+
+    // class NavBarController {
+    //   public loggedIn
+    //   public userName
+    //
+    //   constructor() {
+    //     if(token) {
+    //       let payload = JSON.parse(window.atob(token.split('.')[1]));
+    //       this.userName = payload.username;
+    //       this.loggedIn = true;
+    //     } else {
+    //       this.loggedIn = false;
+    //     }
+    //   }
+    // }
+
 
 }
