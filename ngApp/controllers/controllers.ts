@@ -57,12 +57,18 @@ namespace stadiumapp.Controllers {
           let token = window.localStorage['token'];
           let payload = JSON.parse(window.atob(token.split('.')[1]));
           alert('Login Successful -- Welcome back, ' + payload.username + '!');
+          this.$state.go('home');
+          this.$window.location.reload();
+          // this.$route.reload();
         })
       }
 
       public constructor(
         private userService,
-        public $window
+        public $window,
+        public $state,
+        public $stateParams
+        // public $route
       ) {
 
       }
@@ -116,17 +122,16 @@ namespace stadiumapp.Controllers {
         let payload = JSON.parse(window.atob(token.split('.')[1]));
         alert('Goodbye, ' + payload.username + '! Hope to see you back.');
         localStorage.removeItem('token');
-        this.$state.go('home');
-
+        this.$window.location.reload();
+        // this.$state.go('home');
       }
 
-      constructor(private $state, private $stateParams){
-        let token = window.localStorage['http://localhost:3000'];
+      constructor(private $state, private $stateParams, private $window){
+        let token = window.localStorage['token'];
         // let token = window.localStorage['token'];
         // let payload = JSON.parse(window.atob(token.split('.')[1]));
         // username = payload.username;
         if(token) {
-          alert(token);
           let payload = JSON.parse(window.atob(token.split('.')[1]));
           this.username = payload.username;
           this.loggedIn = true;

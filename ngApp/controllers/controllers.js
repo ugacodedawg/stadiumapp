@@ -40,16 +40,21 @@ var stadiumapp;
         }());
         Controllers.HomeController = HomeController;
         var LoginController = (function () {
-            function LoginController(userService, $window) {
+            function LoginController(userService, $window, $state, $stateParams) {
                 this.userService = userService;
                 this.$window = $window;
+                this.$state = $state;
+                this.$stateParams = $stateParams;
             }
             LoginController.prototype.login = function () {
+                var _this = this;
                 this.userService.loginUser(this.userInfo).then(function (data) {
                     window.localStorage['token'] = JSON.stringify(data.token);
                     var token = window.localStorage['token'];
                     var payload = JSON.parse(window.atob(token.split('.')[1]));
                     alert('Login Successful -- Welcome back, ' + payload.username + '!');
+                    _this.$state.go('home');
+                    _this.$window.location.reload();
                 });
             };
             return LoginController;
@@ -89,12 +94,12 @@ var stadiumapp;
         }());
         Controllers.EditController = EditController;
         var NavBarController = (function () {
-            function NavBarController($state, $stateParams) {
+            function NavBarController($state, $stateParams, $window) {
                 this.$state = $state;
                 this.$stateParams = $stateParams;
-                var token = window.localStorage['http://localhost:3000'];
+                this.$window = $window;
+                var token = window.localStorage['token'];
                 if (token) {
-                    alert(token);
                     var payload = JSON.parse(window.atob(token.split('.')[1]));
                     this.username = payload.username;
                     this.loggedIn = true;
@@ -108,7 +113,7 @@ var stadiumapp;
                 var payload = JSON.parse(window.atob(token.split('.')[1]));
                 alert('Goodbye, ' + payload.username + '! Hope to see you back.');
                 localStorage.removeItem('token');
-                this.$state.go('home');
+                this.$window.location.reload();
             };
             return NavBarController;
         }());
