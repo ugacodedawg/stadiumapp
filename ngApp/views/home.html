@@ -1,19 +1,45 @@
-<!-- <h2>Stadiums</h2> -->
-
 <div class="container">
-    <section class="jumbotron">
+    <section class="jumbotron btn-success">
         <div class="container">
             <h1 class="fancy"><i class="fa fa-trophy" aria-hidden="true"></i> Welcome to aWEna!</h1>
             <p>Our fans travel to sporting arenas/stadiums/parks all over the USA.  <a href="/register">Join the community</a> and add your favorite.</p>
         </div>
+        <!-- <div ng-controller="CarouselDemoCtrl">
+          <div style="height: 305px">
+            <carousel interval="myInterval" no-wrap="noWrapSlides">
+              <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                  <h4>Slide {{$index}}</h4>
+                  <p>{{slide.text}}</p>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="noWrapSlides">
+                  Disable Slide Looping
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
+              <br />Enter a negative number or 0 to stop the interval.
+            </div>
+          </div>
+        </div> -->
     </section>
     <uib-accordion close-others="oneAtATime">
-      <h2 class="text-center" ng-show="!controller.loggedIn" class="panel-default">Please log in to add a new stadium</h2>
+      <h2 class="text-center" ng-show="!controller.loggedIn" class="panel-default">Please log in to add a new arena</h2>
     <div uib-accordion-group class="panel-default" heading="Add Stadium" ng-show="controller.loggedIn">
-      <form> <!-- ng-controller="HomeController" -->
+      <form>
         <div class="form-group">
-          <label>Stadium Name:</label>
-          <input type="text" ng-model="controller.stadium.name" class="form-control" placeholder="Stadium Name" id="name" />
+          <label>Arena Name:</label>
+          <input type="text" ng-model="controller.stadium.name" class="form-control" placeholder="Arena Name" id="name" />
         </div>
         <div class="form-group">
           <label>Sport:</label>
@@ -29,16 +55,17 @@
         <button ng-click="controller.pickFile()">Upload</button>
         <h2>{{controller.file.filename}}</h2>
         <img ng-src="{{controller.file.url | fpConvert:{w: 400} }}" alt="{{controller.file.filename}}" />
-        <button ng-click="controller.save()" class="btn btn-primary" type="submit" id="button" ng-disabled="!controller.stadium.name || !controller.stadium.sport || !controller.file.url">Add Stadium</button>
+        <button ng-click="controller.save()" class="btn btn-primary" type="submit" id="button"
+          ng-disabled="!controller.stadium.name || !controller.stadium.sport || !controller.file.url">Add Arena</button>
       </form>
     </div>
 </div>
 
-<h2>Stadiums in the Database</h2>
-<table class="table">
+<h2>Arenas in the Database</h2>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Stadium Name</th>
+      <th>Arena Name</th>
       <th>Sport</th>
       <th>Image URL</th>
       <th>Owner</th>
@@ -51,12 +78,13 @@
     <td>{{stadium.name}}</td>
     <td>{{stadium.sport}}</td>
     <td><a href="{{stadium.url}}" target="_blank">{{stadium.url}}</a></td>
+    <!-- <td><a href="{{stadium.url}}" target="_blank"><img ng-src="{{stadium.url}}" width=100px height=100px></a></td> -->
     <!-- <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">View Stadium</button> -->
     <!-- <td>{{stadium.owner_id}}</td> -->
     <td>{{stadium.username}}</td>
-    <td colspan=2 ng-show="!controller.currentUser">Must be Owner</td>
-    <td><a ng-show="controller.currentUser" class="btn btn-info" href="/edit/{{stadium._id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-    <td><a ng-show="controller.currentUser" class="btn btn-danger" href="#" ng-click="controller.remove(stadium._id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+    <td colspan=2 ng-show="stadium.username != controller.currentUser">Must be Owner</td>
+    <td ng-show="stadium.username == controller.currentUser"><a class="btn btn-info" href="/edit/{{stadium._id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+    <td ng-show="stadium.username == controller.currentUser"><a class="btn btn-danger" href="#" ng-click="controller.remove(stadium._id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
   </tr>
 </tbody>
 </table>

@@ -3,7 +3,7 @@ namespace stadiumapp.Controllers {
   export class HomeController {
       public stadiums;
       public stadium;
-      public author;
+      public currentUser;
       public loggedIn;
       //Filestack
       public message = 'Click Upload to select a photo from your local computer, OR take a new picture, OR from 15+ cloud-based sites/apps.';
@@ -49,6 +49,8 @@ namespace stadiumapp.Controllers {
         let token = window.localStorage['token'];
         if(token) {
           this.loggedIn = true;
+          let payload = JSON.parse(window.atob(token.split('.')[1]));
+          this.currentUser = payload.username;
         } else {
           this.loggedIn = false;
         }
@@ -170,5 +172,20 @@ namespace stadiumapp.Controllers {
     //   }
     // }
 
-
+    angular.module('stadiumapp').controller('CarouselDemoCtrl', function ($scope) {
+      $scope.myInterval = 5000;
+      $scope.noWrapSlides = false;
+      var slides = $scope.slides = [];
+      $scope.addSlide = function() {
+        var newWidth = 600 + slides.length + 1;
+        slides.push({
+          image: '//placekitten.com/' + newWidth + '/300',
+          text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+            ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+        });
+      };
+      for (var i=0; i<4; i++) {
+        $scope.addSlide();
+      }
+    });
 }
