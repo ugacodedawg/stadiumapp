@@ -33,6 +33,7 @@ var stadiumapp;
                     _this.stadiums = _this.stadiumService.list();
                     _this.stadium = null;
                     _this.file = null;
+                    _this.$window.location.reload();
                 });
             };
             HomeController.prototype.remove = function (id) {
@@ -135,21 +136,5 @@ var stadiumapp;
         }());
         Controllers.NavBarController = NavBarController;
         angular.module('stadiumapp').controller('NavBarController', NavBarController);
-        angular.module('stadiumapp').controller('CarouselDemoCtrl', function ($scope) {
-            $scope.myInterval = 5000;
-            $scope.noWrapSlides = false;
-            var slides = $scope.slides = [];
-            $scope.addSlide = function () {
-                var newWidth = 600 + slides.length + 1;
-                slides.push({
-                    image: '//placekitten.com/' + newWidth + '/300',
-                    text: ['More', 'Extra', 'Lots of', 'Surplus'][slides.length % 4] + ' ' +
-                        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
-                });
-            };
-            for (var i = 0; i < 4; i++) {
-                $scope.addSlide();
-            }
-        });
     })(Controllers = stadiumapp.Controllers || (stadiumapp.Controllers = {}));
 })(stadiumapp || (stadiumapp = {}));
