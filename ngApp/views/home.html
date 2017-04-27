@@ -1,35 +1,35 @@
-<h2>Stadiums</h2>
+<!-- <h2>Stadiums</h2> -->
 
 <div class="container">
     <section class="jumbotron">
         <div class="container">
-            <h1><i class="fa fa-trophy" aria-hidden="true"></i> Welcome to aWEna!</h1>
-            <p>Our fans travel to sporting arenas/stadiums/parks all over the USA.  Join the community and add your favorite.</p>
+            <h1 class="fancy"><i class="fa fa-trophy" aria-hidden="true"></i> Welcome to aWEna!</h1>
+            <p>Our fans travel to sporting arenas/stadiums/parks all over the USA.  <a href="/register">Join the community</a> and add your favorite.</p>
         </div>
     </section>
     <uib-accordion close-others="oneAtATime">
-    <div uib-accordion-group class="panel-default" heading="Add Stadium">
-      <form>
+      <h2 class="text-center" ng-show="!controller.loggedIn" class="panel-default">Please log in to add a new stadium</h2>
+    <div uib-accordion-group class="panel-default" heading="Add Stadium" ng-show="controller.loggedIn">
+      <form> <!-- ng-controller="HomeController" -->
         <div class="form-group">
           <label>Stadium Name:</label>
-          <input ng-model="controller.stadium.name" class="form-control" placeholder="Stadium Name" />
+          <input type="text" ng-model="controller.stadium.name" class="form-control" placeholder="Stadium Name" id="name" />
         </div>
         <div class="form-group">
           <label>Sport:</label>
-          <input ng-model="controller.stadium.sport" class="form-control" placeholder="Sport" />
+          <input type="text" ng-model="controller.stadium.sport" class="form-control" placeholder="Sport" id="sport" />
         </div>
         <div class="form-group">
           <label>Image URL:</label>
-          <input ng-model="controller.file.url" class="form-control" />
+          <input type="text" ng-model="controller.file.url" class="form-control" id="url" />
         </div>
-        <button ng-click="controller.save()" class="btn btn-primary">Add Stadium</button>
         <span><strong>
             {{controller.message}}
         </strong></span>
         <button ng-click="controller.pickFile()">Upload</button>
-
-            <h2>{{controller.file.filename}}</h2>
-            <img ng-src="{{controller.file.url | fpConvert:{w: 400} }}" alt="{{controller.file.filename}}" />
+        <h2>{{controller.file.filename}}</h2>
+        <img ng-src="{{controller.file.url | fpConvert:{w: 400} }}" alt="{{controller.file.filename}}" />
+        <button ng-click="controller.save()" class="btn btn-primary" type="submit" id="button" ng-disabled="!controller.stadium.name || !controller.stadium.sport || !controller.file.url">Add Stadium</button>
       </form>
     </div>
 </div>
@@ -50,11 +50,56 @@
   <tr ng-repeat="stadium in controller.stadiums">
     <td>{{stadium.name}}</td>
     <td>{{stadium.sport}}</td>
-    <td><a href="{{stadium.url}}">{{stadium.url}}</a></td>
+    <td><a href="{{stadium.url}}" target="_blank">{{stadium.url}}</a></td>
+    <!-- <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">View Stadium</button> -->
     <!-- <td>{{stadium.owner_id}}</td> -->
     <td>{{stadium.username}}</td>
-    <td><a class="btn btn-info" href="/edit/{{stadium._id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-    <td><a class="btn btn-danger" href="#" ng-click="controller.remove(stadium._id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+    <td colspan=2 ng-show="!controller.currentUser">Must be Owner</td>
+    <td><a ng-show="controller.currentUser" class="btn btn-info" href="/edit/{{stadium._id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+    <td><a ng-show="controller.currentUser" class="btn btn-danger" href="#" ng-click="controller.remove(stadium._id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
   </tr>
 </tbody>
 </table>
+
+<!-- Modal
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+  <! Modal content
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Missed Questions</h4>
+      </div>
+      <div class="modal-body">
+        <img src="{{stadium.url}}">
+        <! <div class="container table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <th>Your Answer</th><th>Correct Answer</th>
+            </thead>
+            <tbody id = "nextRow">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<! End Modal -->
+
+
+
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Popup image</button> -->
+
+<div id="myModal2" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-body">
+            <img src="{{stadium.url}}" class="img-responsive">
+        </div>
+    </div>
+  </div>
+</div>

@@ -3,12 +3,22 @@ var stadiumapp;
     var Controllers;
     (function (Controllers) {
         var HomeController = (function () {
-            function HomeController(stadiumService, filepickerService, $scope) {
+            function HomeController(stadiumService, filepickerService, $scope, $state, $stateParams, $window) {
                 this.stadiumService = stadiumService;
                 this.filepickerService = filepickerService;
                 this.$scope = $scope;
+                this.$state = $state;
+                this.$stateParams = $stateParams;
+                this.$window = $window;
                 this.message = 'Click Upload to select a photo from your local computer, OR take a new picture, OR from 15+ cloud-based sites/apps.';
                 this.stadiums = stadiumService.list();
+                var token = window.localStorage['token'];
+                if (token) {
+                    this.loggedIn = true;
+                }
+                else {
+                    this.loggedIn = false;
+                }
             }
             HomeController.prototype.save = function () {
                 var _this = this;
@@ -61,12 +71,16 @@ var stadiumapp;
         }());
         Controllers.LoginController = LoginController;
         var RegisterController = (function () {
-            function RegisterController(userService) {
+            function RegisterController(userService, $state, $stateParams) {
                 this.userService = userService;
+                this.$state = $state;
+                this.$stateParams = $stateParams;
             }
             RegisterController.prototype.signup = function () {
+                var _this = this;
                 this.userService.registerUser(this.user).then(function () {
                     alert('signup successful, please login');
+                    _this.$state.go('login');
                 });
             };
             return RegisterController;
@@ -119,12 +133,5 @@ var stadiumapp;
         }());
         Controllers.NavBarController = NavBarController;
         angular.module('stadiumapp').controller('NavBarController', NavBarController);
-        var AboutController = (function () {
-            function AboutController() {
-                this.message = 'Hello from the about page!';
-            }
-            return AboutController;
-        }());
-        Controllers.AboutController = AboutController;
     })(Controllers = stadiumapp.Controllers || (stadiumapp.Controllers = {}));
 })(stadiumapp || (stadiumapp = {}));

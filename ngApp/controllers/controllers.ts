@@ -4,6 +4,7 @@ namespace stadiumapp.Controllers {
       public stadiums;
       public stadium;
       public author;
+      public loggedIn;
       //Filestack
       public message = 'Click Upload to select a photo from your local computer, OR take a new picture, OR from 15+ cloud-based sites/apps.';
       public file;
@@ -42,24 +43,30 @@ namespace stadiumapp.Controllers {
       }
 
       constructor(private stadiumService:stadiumapp.Services.StadiumService,
-      private filepickerService, private $scope: ng.IScope) {
+                  private filepickerService, private $scope: ng.IScope,
+                  private $state, private $stateParams, private $window) {
         this.stadiums = stadiumService.list();
+        let token = window.localStorage['token'];
+        if(token) {
+          this.loggedIn = true;
+        } else {
+          this.loggedIn = false;
+        }
       }
+
   }
 
   export class LoginController {
-      public userInfo
+      public userInfo;
 
       public login() {
         this.userService.loginUser(this.userInfo).then((data) => {
-          // window.localStorage.setItem("token", JSON.stringify(data.token));
           window.localStorage['token'] = JSON.stringify(data.token);
           let token = window.localStorage['token'];
           let payload = JSON.parse(window.atob(token.split('.')[1]));
           alert('Login Successful -- Welcome back, ' + payload.username + '!');
           this.$state.go('home');
           this.$window.location.reload();
-          // this.$route.reload();
         })
       }
 
@@ -68,10 +75,7 @@ namespace stadiumapp.Controllers {
         public $window,
         public $state,
         public $stateParams
-        // public $route
-      ) {
-
-      }
+      ) {}
   }
 
   export class RegisterController {
@@ -80,11 +84,12 @@ namespace stadiumapp.Controllers {
       public signup() {
         this.userService.registerUser(this.user).then(() => {
           alert('signup successful, please login');
+          this.$state.go('login');
         })
       }
 
       public constructor(
-        private userService
+        private userService, private $state, private $stateParams
       ) {
 
       }
@@ -103,6 +108,7 @@ namespace stadiumapp.Controllers {
           this.$state.go('home');
         });
       }
+
       constructor(
         private stadiumService,
         private $state,
@@ -123,14 +129,10 @@ namespace stadiumapp.Controllers {
         alert('Goodbye, ' + payload.username + '! Hope to see you back.');
         localStorage.removeItem('token');
         this.$window.location.reload();
-        // this.$state.go('home');
       }
 
       constructor(private $state, private $stateParams, private $window){
         let token = window.localStorage['token'];
-        // let token = window.localStorage['token'];
-        // let payload = JSON.parse(window.atob(token.split('.')[1]));
-        // username = payload.username;
         if(token) {
           let payload = JSON.parse(window.atob(token.split('.')[1]));
           this.username = payload.username;
@@ -142,9 +144,16 @@ namespace stadiumapp.Controllers {
     }
     angular.module('stadiumapp').controller('NavBarController', NavBarController);
 
-    export class AboutController {
-        public message = 'Hello from the about page!';
-    }
+    // export class AboutController {
+    //     public message = 'Hello from the about page!';
+    // }
+
+    // export class ModalController {
+    //   public stadium
+    //
+    //   constructor(private $scope) {}
+    //
+    // }
 
     // class NavBarController {
     //   public loggedIn
