@@ -2,4 +2,5 @@
 <input type="text" placeholder="username" ng-model="controller.user.username"/>
 <input type="text" placeholder="email" ng-model="controller.user.email"/>
 <input type="password" placeholder="password" ng-model="controller.user.password"/>
-<button type="button" ng-click="controller.signup()">Submit</button>
+<button type="button" ng-click="controller.signup()"
+  ng-disabled="!controller.user.username || !controller.user.email || !controller.user.password">Submit</button>

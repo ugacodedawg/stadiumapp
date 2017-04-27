@@ -13,21 +13,28 @@
 
 <body>
 
-   <nav class="navbar navbar-default" ng-controller="NavBarController as controller">
+   <nav class="navbar navbar-inverse" ng-controller="NavBarController as controller">
      <div class="container-fluid">
       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <a class="navbar-brand" href="/"><span class="fancy">aWEna!</span></a>
       </div>
-      <div class="collapse navbar-collapse" id="bs-menu">
+      <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" ng-show="controller.loggedIn">Signed in as {{controller.username}}</li>
           <li><a href="/login" ng-show="!controller.loggedIn">Login</a></li>
           <li><a href="/register" ng-show="!controller.loggedIn">Sign Up</a></li>
-          <li><a ng-click="controller.logout()">Logout</a></li>
+          <li><a ng-click="controller.logout()" ng-show="controller.loggedIn">Logout</a></li>
         </ul>
       </div>
     </div>
   </nav>
+
   <div class="container">
         <!-- <h1>stadiumapp</h1>
         <div>
