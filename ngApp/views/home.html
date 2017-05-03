@@ -59,6 +59,7 @@
           ng-disabled="!controller.stadium.name || !controller.stadium.sport || !controller.file.url">Add Arena</button>
       </form>
     </div>
+    </uib-accordion>
 </div>
 
 <div class="container">
@@ -66,23 +67,40 @@
     <h1 class="page-header">Arena Gallery</h1>
   </div>
   <div class="row flex">
-    <div class="col-lg-3 col-md-4 col-xs-6 thumb" ng-repeat="stadium in controller.stadiums">
-      <div class="thumbnail" href="#">
+    <div class="col-lg-3 col-md-4 col-xs-6 panel panel-default" ng-repeat="stadium in controller.stadiums">
+      <div class="panel-body" href="#">
         <img class="img-responsive" ng-src="{{stadium.url}}" alt="">
         <div class="caption">
           <h4>{{stadium.name}}</h4>
           <p>
             <!-- <a href="/edit/{{stadium._id}}" class="btn btn-primary">More Info</a> -->
-            <span ng-show="stadium.username != controller.currentUser && controller.currentUser != 'admin' ">Must be Owner to edit/delete</span>
-            <span ng-show="stadium.username == controller.currentUser || controller.currentUser == 'admin' "><a class="btn btn-info" href="/edit/{{stadium._id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></span>
-            <span ng-show="stadium.username == controller.currentUser || controller.currentUser == 'admin' "><a class="btn btn-danger" href="#" ng-click="controller.remove(stadium._id)"><i class="fa fa-trash" aria-hidden="true"></i></a></span>
+            <h6 ng-show="!controller.currentUser">Must be logged in to comment</h6>
+            <h6 ng-show="stadium.username != controller.currentUser && controller.currentUser != 'admin' ">Must be Owner to edit/delete</h6>
+            <span data-toggle="tooltip" data-placement="top" title="edit" ng-show="stadium.username == controller.currentUser || controller.currentUser == 'admin' ">
+              <a class="btn btn-info" href="/edit/{{stadium._id}}">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </a>
+            </span>
+            <span data-toggle="tooltip" data-placement="top" title="delete" ng-show="stadium.username == controller.currentUser || controller.currentUser == 'admin' ">
+              <a class="btn btn-danger" href="#" ng-click="controller.remove(stadium._id)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </a>
+            </span>
+            <span style="float:right;" data-toggle="tooltip" data-placement="top" title="comment" ng-show="controller.currentUser">
+              <a class="btn btn-success" href="#" ng-click="controller.remove(stadium._id)">
+                <i class="fa fa-comment-o" aria-hidden="true"></i>
+              </a>
+            </span>
           </p>
         </div>
       </div>
     </div>
   </div>
 </div>
-<h2>Arenas in the Database</h2>
+
+<uib-accordion close-others="oneAtATime">
+<div uib-accordion-group class="panel-default" heading="Arenas in the Database">
+<!-- <h2>Arenas in the Database</h2> -->
 <div class="table-responsive">
 <table class="table table-striped">
   <thead>
@@ -111,6 +129,8 @@
 </tbody>
 </table>
 </div>
+</div>
+</uib-accordion>
 <!-- Modal
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog modal-lg">
@@ -144,7 +164,7 @@
 
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Popup image</button> -->
 
-<div id="myModal2" class="modal fade">
+<!-- <div id="myModal2" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-body">
@@ -152,4 +172,4 @@
         </div>
     </div>
   </div>
-</div>
+</div> -->

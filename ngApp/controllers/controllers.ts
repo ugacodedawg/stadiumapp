@@ -86,7 +86,7 @@ namespace stadiumapp.Controllers {
 
       public signup() {
         this.userService.registerUser(this.user).then(() => {
-          alert('signup successful, please login');
+          alert('Welcome, ' + this.user.username + '. Please log in.');
           this.$state.go('login');
         })
       }
@@ -125,6 +125,7 @@ namespace stadiumapp.Controllers {
     export class NavBarController {
       public loggedIn;
       public username;
+      public isLanding;
 
       public logout() {
         let token = window.localStorage['token'];
@@ -135,6 +136,7 @@ namespace stadiumapp.Controllers {
       }
 
       constructor(private $state, private $stateParams, private $window){
+        // this.$window.location.reload();
         let token = window.localStorage['token'];
         if(token) {
           let payload = JSON.parse(window.atob(token.split('.')[1]));
@@ -143,9 +145,40 @@ namespace stadiumapp.Controllers {
         } else {
           this.loggedIn = false;
         }
+        if($window.location.pathname === '/') {
+          // console.log($state.current.templateUrl);
+          this.isLanding = true;
+        } else {
+          this.isLanding = false;
+        }
       }
     }
     angular.module('stadiumapp').controller('NavBarController', NavBarController);
+
+    export class LandingController {
+      public stadiums;
+      public stadium;
+      public slide;
+
+      constructor(private stadiumService:stadiumapp.Services.StadiumService) {
+        this.stadiums = stadiumService.list();
+        this.stadium = 'https://cdn.filestackcontent.com/FXvQpIPMRimgcWSFvfRi';
+        setTimeout(function(){ this.stadium = 'https://cdn.filestackcontent.com/0bO6vh5TZO9lqp8jga8X'; }, 5000);
+    // do something
+}
+        // this.stadiums.forEach(myFunction);
+        //
+        // function myFunction() {
+          // alert("Hello");
+        // }
+        // stadiums.forEach(var i=1;i<this.stadiums.length;i++){
+        //   this.slide=true;
+        //   setTimeout(function(){ alert("Hello"); }, 5000);
+        // }
+
+      }
+
+
 
     // export class AboutController {
     //     public message = 'Hello from the about page!';
@@ -158,20 +191,4 @@ namespace stadiumapp.Controllers {
     //
     // }
 
-    // angular.module('stadiumapp').controller('CarouselDemoCtrl', function ($scope) {
-    //   $scope.myInterval = 5000;
-    //   $scope.noWrapSlides = false;
-    //   var slides = $scope.slides = [];
-    //   $scope.addSlide = function() {
-    //     var newWidth = 600 + slides.length + 1;
-    //     slides.push({
-    //       image: '//placekitten.com/' + newWidth + '/300',
-    //       text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-    //         ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
-    //     });
-    //   };
-    //   for (var i=0; i<4; i++) {
-    //     $scope.addSlide();
-    //   }
-    // });
 }

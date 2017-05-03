@@ -1,29 +1,19 @@
-<h2>Login</h2>
-<input type="text" placeholder="username" ng-model="controller.userInfo.username"/>
-<input type="password" placeholder="password" ng-model="controller.userInfo.password"/>
-<button type="button" class="btn btn-sm" ng-click="controller.login()" ng-disabled="!controller.userInfo.username || !controller.userInfo.password">Login</button>
-<div style="padding-top: 25px;">
-  <a href="/register">New Account</a>
-</div>
-
 <div class="container">
-
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please Login</h2>
-        <label for="username" class="sr-only">Username</label>
-        <input type="text" id="username" class="form-control" placeholder="username" ng-model="controller.userInfo.username" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="password" ng-model="controller.userInfo.password" required>
-        <!-- <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div> -->
-        <button class="btn btn-lg btn-primary btn-block" type="submit"
-          ng-click="controller.login()" ng-disabled="!controller.userInfo.username || !controller.userInfo.password">Sign in</button>
-        <div style="padding-top: 25px;">
-          <a href="/register">New Account</a>
-        </div>
-      </form>
-
-    </div> <!-- /container -->
+  <form class="form-signin">
+    <h2 class="form-signin-heading">Please Login</h2>
+    <label for="username" class="sr-only">Username</label>
+    <input type="text" id="username" class="form-control" placeholder="username" ng-model="controller.userInfo.username" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="password" ng-model="controller.userInfo.password" required>
+    <!-- <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div> -->
+    <button class="btn btn-lg btn-primary btn-block" type="submit"
+      ng-click="controller.login()" ng-disabled="!controller.userInfo.username || !controller.userInfo.password">Sign In</button>
+    <div style="padding-top: 25px;">
+      <a href="/register">New Account</a>
+    </div>
+  </form>
+</div>

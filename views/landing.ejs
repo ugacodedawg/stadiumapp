@@ -5,9 +5,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="/ngApp/css/landing.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
-        <script type="text/javascript" src="/ngApp/js/slideshow.js"></script>
+        <!-- <script type="text/javascript" src="/ngApp/js/slideshow.js"></script> -->
     </head>
-    <body>
+    <body id="body">
 
     <!-- <div class="container">
             <div class="alert alert-danger" role="alert">
@@ -21,12 +21,12 @@
 		<a href="/" class="btn btn-lg btn-success">View All Arenas</a>
     </div>
 
-    <ul class="slideshow">
+    <ul id="slideList" class="slideshow" ng-controller="LandingController as controller" ng-repeat="stadium in controller.stadiums">
+      <li><img ng-src={{stadium.url}}></li>
+      <!-- <li></li>
       <li></li>
       <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li></li> -->
     </ul>
 
 <!-- Added: Latest compiled and minified Bootstrap/JQuery JavaScript -->

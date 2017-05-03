@@ -13,7 +13,7 @@
 
 <body>
 
-   <nav class="navbar navbar-inverse" ng-controller="NavBarController as controller">
+   <nav ng-show="!controller.isLanding" class="navbar navbar-inverse" ng-controller="NavBarController as controller">
      <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -47,12 +47,20 @@
         <ui-view></ui-view>
   </div>
 
+  <footer ng-show="!controller.isLanding" ng-controller="NavBarController as controller" style="background:black;">
+    <ul class="footer">
+      <li><i class="fa fa-copyright" aria-hidden="true"></i> ugacodedawg 2017</h4>
+      <li><a href="mailto:travis.mcelroy@gmail.com">Email Me</a></li>
+    </ul>
+  </footer>
+
   <script src="/bower_components/angular/angular.min.js"></script>
   <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
   <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
   <script src="/bower_components/angular-touch/angular-touch.min.js"></script>
   <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="/bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
 
   <script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
   <script src="/bower_components/angular/angular_filepicker.min.js"></script>
@@ -65,7 +73,6 @@
   <script src="/ngApp/app.js"></script>
   <script src="/ngApp/controllers/controllers.js"></script>
   <script src="/ngApp/services/services.js"></script>
-
 </body>
 
 </html>

@@ -9,8 +9,14 @@ namespace stadiumapp {
       filepickerProvider.setKey('AJ1qzKq0iSJ6ocUxOHi6Zz');
         // Define routes
         $stateProvider
-            .state('home', {
+            .state('landing', {
                 url: '/',
+                templateUrl: '/ngApp/views/landing.html',
+                controller: stadiumapp.Controllers.LandingController,
+                controllerAs: 'controller'
+            })
+            .state('home', {
+                url: '/home',
                 templateUrl: '/ngApp/views/home.html',
                 controller: stadiumapp.Controllers.HomeController,
                 controllerAs: 'controller'

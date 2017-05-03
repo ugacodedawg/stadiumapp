@@ -82,7 +82,7 @@ var stadiumapp;
             RegisterController.prototype.signup = function () {
                 var _this = this;
                 this.userService.registerUser(this.user).then(function () {
-                    alert('signup successful, please login');
+                    alert('Welcome, ' + _this.user.username + '. Please log in.');
                     _this.$state.go('login');
                 });
             };
@@ -124,6 +124,12 @@ var stadiumapp;
                 else {
                     this.loggedIn = false;
                 }
+                if ($window.location.pathname === '/') {
+                    this.isLanding = true;
+                }
+                else {
+                    this.isLanding = false;
+                }
             }
             NavBarController.prototype.logout = function () {
                 var token = window.localStorage['token'];
@@ -136,5 +142,15 @@ var stadiumapp;
         }());
         Controllers.NavBarController = NavBarController;
         angular.module('stadiumapp').controller('NavBarController', NavBarController);
+        var LandingController = (function () {
+            function LandingController(stadiumService) {
+                this.stadiumService = stadiumService;
+                this.stadiums = stadiumService.list();
+                this.stadium = 'https://cdn.filestackcontent.com/FXvQpIPMRimgcWSFvfRi';
+                setTimeout(function () { this.stadium = 'https://cdn.filestackcontent.com/0bO6vh5TZO9lqp8jga8X'; }, 5000);
+            }
+            return LandingController;
+        }());
+        Controllers.LandingController = LandingController;
     })(Controllers = stadiumapp.Controllers || (stadiumapp.Controllers = {}));
 })(stadiumapp || (stadiumapp = {}));
