@@ -1,6 +1,6 @@
 namespace stadiumapp {
 
-    angular.module('stadiumapp', ['ui.router', 'ngResource', 'angular-filepicker', 'ui.bootstrap']).config((
+    angular.module('stadiumapp', ['ui.router', 'ngResource', 'angular-filepicker', 'ui.bootstrap', 'angularModalService']).config((
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider,
         $locationProvider: ng.ILocationProvider,

@@ -1,6 +1,6 @@
 var stadiumapp;
 (function (stadiumapp) {
-    angular.module('stadiumapp', ['ui.router', 'ngResource', 'angular-filepicker', 'ui.bootstrap']).config(function ($stateProvider, $urlRouterProvider, $locationProvider, filepickerProvider) {
+    angular.module('stadiumapp', ['ui.router', 'ngResource', 'angular-filepicker', 'ui.bootstrap', 'angularModalService']).config(function ($stateProvider, $urlRouterProvider, $locationProvider, filepickerProvider) {
         filepickerProvider.setKey('AJ1qzKq0iSJ6ocUxOHi6Zz');
         $stateProvider
             .state('landing', {

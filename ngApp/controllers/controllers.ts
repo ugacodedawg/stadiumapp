@@ -43,9 +43,23 @@ namespace stadiumapp.Controllers {
           this.$scope.$apply(); // force page to update
       }
 
-      constructor(private stadiumService:stadiumapp.Services.StadiumService,
+      public showModal(stadiumObj) {
+        this.$uibModal.open({
+          templateUrl: '/ngApp/views/stadiumDialog.html',
+          controller: 'DialogController',
+          controllerAs: 'modal',
+          resolve: {
+            stadium: () => stadiumObj
+          },
+          size: 'md'
+        });
+      };
+
+
+      constructor(private $uibModal: angular.ui.bootstrap.IModalService,
+                  private stadiumService:stadiumapp.Services.StadiumService,
                   private filepickerService, private $scope: ng.IScope,
-                  private $state, private $stateParams, private $window) {
+                  private $state, private $stateParams, private $window, public ModalService) {
         this.stadiums = stadiumService.list();
         let token = window.localStorage['token'];
         if(token) {
@@ -58,6 +72,28 @@ namespace stadiumapp.Controllers {
       }
 
   }
+
+  class DialogController {
+    public currentUser;
+
+    public ok() {
+      this.$uibModalInstance.close();
+    }
+
+    constructor(public stadium, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) {
+      let token = window.localStorage['token'];
+      if(token) {
+        let payload = JSON.parse(window.atob(token.split('.')[1]));
+        this.currentUser = payload.username;
+      } else {
+        this.currentUser = false;
+      }
+
+     }
+
+  }
+
+  angular.module('stadiumapp').controller('DialogController', DialogController);
 
   export class LoginController {
       public userInfo;

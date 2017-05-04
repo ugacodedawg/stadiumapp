@@ -42,6 +42,10 @@
           <input type="text" ng-model="controller.stadium.name" class="form-control" placeholder="Arena Name" id="name" />
         </div>
         <div class="form-group">
+          <label>City:</label>
+          <input type="text" ng-model="controller.stadium.city" class="form-control" placeholder="City" id="city" />
+        </div>
+        <div class="form-group">
           <label>Sport:</label>
           <input type="text" ng-model="controller.stadium.sport" class="form-control" placeholder="Sport" id="sport" />
         </div>
@@ -67,11 +71,11 @@
     <h1 class="page-header">Arena Gallery</h1>
   </div>
   <div class="row flex">
-    <div class="col-lg-3 col-md-4 col-xs-6 panel panel-default" ng-repeat="stadium in controller.stadiums">
+    <div class="col-lg-3 col-md-4 col-xs-6 panel panel-default" ng-repeat="stadium in controller.stadiums|filter:{stadiumId:controller.stadiumId}">
       <div class="panel-body" href="#">
         <img class="img-responsive" ng-src="{{stadium.url}}" alt="">
         <div class="caption">
-          <h4>{{stadium.name}}</h4>
+          <a href="#" ng-click="controller.showModal(stadium)"><h4>{{stadium.name}}</h4></a>
           <p>
             <!-- <a href="/edit/{{stadium._id}}" class="btn btn-primary">More Info</a> -->
             <h6 ng-show="!controller.currentUser">Must be logged in to comment</h6>
@@ -87,7 +91,7 @@
               </a>
             </span>
             <span style="float:right;" data-toggle="tooltip" data-placement="top" title="comment" ng-show="controller.currentUser">
-              <a class="btn btn-success" href="#" ng-click="controller.remove(stadium._id)">
+              <a class="btn btn-success" href="#" ng-click="controller.showModal(stadium)">
                 <i class="fa fa-comment-o" aria-hidden="true"></i>
               </a>
             </span>
@@ -106,6 +110,7 @@
   <thead>
     <tr>
       <th>Arena Name</th>
+      <th>City</th>
       <th>Sport</th>
       <th>Image URL</th>
       <th>Owner</th>
@@ -116,6 +121,7 @@
   <tbody>
   <tr ng-repeat="stadium in controller.stadiums">
     <td>{{stadium.name}}</td>
+    <td>{{stadium.city}}</td>
     <td>{{stadium.sport}}</td>
     <td><a href="{{stadium.url}}" target="_blank">{{stadium.url}}</a></td>
     <!-- <td><a href="{{stadium.url}}" target="_blank"><img ng-src="{{stadium.url}}" width=100px height=100px></a></td> -->

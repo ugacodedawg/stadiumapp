@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h3 class="modal-title blue">Selected Stadium: {{modal.stadium.name}}</h3>
+</div>
+<div class="modal-body">
+    <h4 class="green">City: {{modal.stadium.city}}</h4>
+    <h4 class="purple">Sport: {{modal.stadium.sport}}</h4>
+    <hr>
+    <img class="modalImg" src="{{modal.stadium.url}}" alt="model picture" />
+</div>
+<div class="modal-footer">
+  <div class="well">
+    <strong>'modal.stadium.comments.author.username'</strong>
+    <br />
+    <span class="pull-right">'modal.stadium.comments.date'</span>
+    <p>'modal.stadium.comments.text'</p>
+    <div class="text-right">
+        <a ng-show="modal.currentUser" class="btn btn-success" href="/campgrounds/<%=campground._id%>/comments/new">Add New Comment</a>
+    </div>
+  </div>
+    <button class="btn btn-primary" ng-click="modal.ok()">OK</button>
+</div>

@@ -131,3 +131,20 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+img.modalImg {
+    max-width:500px;
+    max-height:500px;
+    width:auto;
+    height:auto;
+}
+
+.blue {
+  color: blue;
+}
+.green {
+  color: green;
+}
+.purple {
+  color: purple;
+}

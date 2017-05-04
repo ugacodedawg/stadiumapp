@@ -3,13 +3,15 @@ var stadiumapp;
     var Controllers;
     (function (Controllers) {
         var HomeController = (function () {
-            function HomeController(stadiumService, filepickerService, $scope, $state, $stateParams, $window) {
+            function HomeController($uibModal, stadiumService, filepickerService, $scope, $state, $stateParams, $window, ModalService) {
+                this.$uibModal = $uibModal;
                 this.stadiumService = stadiumService;
                 this.filepickerService = filepickerService;
                 this.$scope = $scope;
                 this.$state = $state;
                 this.$stateParams = $stateParams;
                 this.$window = $window;
+                this.ModalService = ModalService;
                 this.message = 'Click Upload to select a photo from your local computer, OR take a new picture, OR from 15+ cloud-based sites/apps.';
                 this.stadiums = stadiumService.list();
                 var token = window.localStorage['token'];
@@ -49,9 +51,40 @@ var stadiumapp;
                 this.file = file;
                 this.$scope.$apply();
             };
+            HomeController.prototype.showModal = function (stadiumObj) {
+                this.$uibModal.open({
+                    templateUrl: '/ngApp/views/stadiumDialog.html',
+                    controller: 'DialogController',
+                    controllerAs: 'modal',
+                    resolve: {
+                        stadium: function () { return stadiumObj; }
+                    },
+                    size: 'md'
+                });
+            };
+            ;
             return HomeController;
         }());
         Controllers.HomeController = HomeController;
+        var DialogController = (function () {
+            function DialogController(stadium, $uibModalInstance) {
+                this.stadium = stadium;
+                this.$uibModalInstance = $uibModalInstance;
+                var token = window.localStorage['token'];
+                if (token) {
+                    var payload = JSON.parse(window.atob(token.split('.')[1]));
+                    this.currentUser = payload.username;
+                }
+                else {
+                    this.currentUser = false;
+                }
+            }
+            DialogController.prototype.ok = function () {
+                this.$uibModalInstance.close();
+            };
+            return DialogController;
+        }());
+        angular.module('stadiumapp').controller('DialogController', DialogController);
         var LoginController = (function () {
             function LoginController(userService, $window, $state, $stateParams) {
                 this.userService = userService;
