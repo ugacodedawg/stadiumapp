@@ -13,7 +13,7 @@
 
 <body>
 
-   <nav ng-show="!controller.isLanding" class="navbar navbar-inverse" ng-controller="NavBarController as controller">
+   <nav id="navbar" class="navbar navbar-inverse" ng-controller="NavBarController as controller">
      <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -47,7 +47,7 @@
         <ui-view></ui-view>
   </div>
 
-  <footer ng-show="!controller.isLanding" ng-controller="NavBarController as controller" style="background:black;">
+  <footer id="footer" ng-controller="NavBarController as controller" style="background:black;">
     <ul class="footer">
       <li><i class="fa fa-copyright" aria-hidden="true"></i> ugacodedawg 2017</h4>
       <li><a href="mailto:travis.mcelroy@gmail.com">Email Me</a></li>

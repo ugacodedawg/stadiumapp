@@ -1,7 +1,9 @@
 <div id="landing-body" class="container">
   <div id="landing-header">
     <h1>Welcome to aWEna!</h1>
-    <a href="/home" class="btn btn-lg btn-success">View All Arenas</a>
+    <div ng-controller="NavBarController as controller">
+      <a ng-click="controller.goHome()" class="btn btn-lg btn-success">View All Arenas</a>
+    </div>
   </div>
 
   <ul id="slideList" class="slideshow">

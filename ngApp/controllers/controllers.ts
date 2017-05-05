@@ -161,7 +161,14 @@ namespace stadiumapp.Controllers {
     export class NavBarController {
       public loggedIn;
       public username;
-      public isLanding;
+      public navbar;
+      public footer;
+
+      public goHome() {
+        this.navbar.style.display = '';
+        this.footer.style.display = '';
+        this.$state.go('home');
+      }
 
       public logout() {
         let token = window.localStorage['token'];
@@ -171,8 +178,10 @@ namespace stadiumapp.Controllers {
         this.$window.location.reload();
       }
 
-      constructor(private $state, private $stateParams, private $window){
-        // this.$window.location.reload();
+      constructor(private $state, private $stateParams, private $window, public $scope){
+        this.navbar = <HTMLElement>document.getElementById('navbar');
+        this.footer = <HTMLElement>document.getElementById('footer');
+
         let token = window.localStorage['token'];
         if(token) {
           let payload = JSON.parse(window.atob(token.split('.')[1]));
@@ -182,10 +191,8 @@ namespace stadiumapp.Controllers {
           this.loggedIn = false;
         }
         if($window.location.pathname === '/') {
-          // console.log($state.current.templateUrl);
-          this.isLanding = true;
-        } else {
-          this.isLanding = false;
+          this.navbar.style.display = 'none';
+          this.footer.style.display = 'none';
         }
       }
     }

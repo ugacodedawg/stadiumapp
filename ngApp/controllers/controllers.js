@@ -144,10 +144,13 @@ var stadiumapp;
         }());
         Controllers.EditController = EditController;
         var NavBarController = (function () {
-            function NavBarController($state, $stateParams, $window) {
+            function NavBarController($state, $stateParams, $window, $scope) {
                 this.$state = $state;
                 this.$stateParams = $stateParams;
                 this.$window = $window;
+                this.$scope = $scope;
+                this.navbar = document.getElementById('navbar');
+                this.footer = document.getElementById('footer');
                 var token = window.localStorage['token'];
                 if (token) {
                     var payload = JSON.parse(window.atob(token.split('.')[1]));
@@ -158,12 +161,15 @@ var stadiumapp;
                     this.loggedIn = false;
                 }
                 if ($window.location.pathname === '/') {
-                    this.isLanding = true;
-                }
-                else {
-                    this.isLanding = false;
+                    this.navbar.style.display = 'none';
+                    this.footer.style.display = 'none';
                 }
             }
+            NavBarController.prototype.goHome = function () {
+                this.navbar.style.display = '';
+                this.footer.style.display = '';
+                this.$state.go('home');
+            };
             NavBarController.prototype.logout = function () {
                 var token = window.localStorage['token'];
                 var payload = JSON.parse(window.atob(token.split('.')[1]));
