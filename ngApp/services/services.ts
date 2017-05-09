@@ -50,7 +50,7 @@ namespace stadiumapp.Services {
     public list() {
       return this.commentResource.query();
     }
-    public save(stadium) {
+    public save(comment) {
       return this.commentResource.save(comment).$promise;
     }
     public remove(id) {

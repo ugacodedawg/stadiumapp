@@ -48,7 +48,7 @@ var stadiumapp;
             CommentService.prototype.list = function () {
                 return this.commentResource.query();
             };
-            CommentService.prototype.save = function (stadium) {
+            CommentService.prototype.save = function (comment) {
                 return this.commentResource.save(comment).$promise;
             };
             CommentService.prototype.remove = function (id) {
