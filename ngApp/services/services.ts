@@ -42,4 +42,25 @@ namespace stadiumapp.Services {
 
   angular.module('stadiumapp').service('userService', UserService);
 
+  export class CommentService {
+    private commentResource;
+    public get(id) {
+      return this.commentResource.get({id:id});
+    }
+    public list() {
+      return this.commentResource.query();
+    }
+    public save(stadium) {
+      return this.commentResource.save(comment).$promise;
+    }
+    public remove(id) {
+      return this.commentResource.remove({id:id}).$promise;
+    }
+
+    constructor($resource) {
+      this.commentResource = $resource('/api/stadiums/:id');
+    }
+  }
+  angular.module('stadiumapp').service('commentService', CommentService);
+
 }

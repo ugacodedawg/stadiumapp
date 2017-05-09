@@ -67,9 +67,11 @@ var stadiumapp;
         }());
         Controllers.HomeController = HomeController;
         var DialogController = (function () {
-            function DialogController(stadium, $uibModalInstance) {
+            function DialogController(stadium, $uibModalInstance, commentService, $window) {
                 this.stadium = stadium;
                 this.$uibModalInstance = $uibModalInstance;
+                this.commentService = commentService;
+                this.$window = $window;
                 var token = window.localStorage['token'];
                 if (token) {
                     var payload = JSON.parse(window.atob(token.split('.')[1]));
@@ -81,6 +83,18 @@ var stadiumapp;
             }
             DialogController.prototype.ok = function () {
                 this.$uibModalInstance.close();
+            };
+            DialogController.prototype.save = function () {
+                var _this = this;
+                var token = window.localStorage['token'];
+                var payload = JSON.parse(window.atob(token.split('.')[1]));
+                this.comment.author_id = payload.id;
+                this.comment.author.username = payload.username;
+                this.commentService.save(this.comment).then(function () {
+                    _this.comments = _this.commentService.list();
+                    _this.comment = null;
+                    _this.$window.location.reload();
+                });
             };
             return DialogController;
         }());

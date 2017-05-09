@@ -11,6 +11,7 @@ var users_1 = require("./routes/users");
 require('./models/user');
 require('./config/passport');
 var stadiums_1 = require("./api/stadiums");
+var comments_1 = require("./api/comments");
 var db_1 = require("./db");
 db_1.default.connect();
 var app = express();
@@ -29,6 +30,7 @@ mongoose.connect('mongodb://webuser:Secret123!@ds147599.mlab.com:47599/cctrav');
 app.use('/userRoutes/api/', users_1.default);
 app.use('/', index_1.default);
 app.use('/api/stadiums', stadiums_1.default);
+app.use('/api/comments', comments_1.default);
 app.get('/*', function (req, res, next) {
     if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {
         return next({ status: 404, message: 'Not Found' });

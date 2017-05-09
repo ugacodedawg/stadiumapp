@@ -38,5 +38,25 @@ var stadiumapp;
         }());
         Services.UserService = UserService;
         angular.module('stadiumapp').service('userService', UserService);
+        var CommentService = (function () {
+            function CommentService($resource) {
+                this.commentResource = $resource('/api/stadiums/:id');
+            }
+            CommentService.prototype.get = function (id) {
+                return this.commentResource.get({ id: id });
+            };
+            CommentService.prototype.list = function () {
+                return this.commentResource.query();
+            };
+            CommentService.prototype.save = function (stadium) {
+                return this.commentResource.save(comment).$promise;
+            };
+            CommentService.prototype.remove = function (id) {
+                return this.commentResource.remove({ id: id }).$promise;
+            };
+            return CommentService;
+        }());
+        Services.CommentService = CommentService;
+        angular.module('stadiumapp').service('commentService', CommentService);
     })(Services = stadiumapp.Services || (stadiumapp.Services = {}));
 })(stadiumapp || (stadiumapp = {}));

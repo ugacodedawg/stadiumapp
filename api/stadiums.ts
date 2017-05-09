@@ -1,7 +1,7 @@
 import * as express from 'express';
 import database from '../db';
 import * as mongodb from 'mongodb';
-//import Stadium from '../models/stadium';
+import Stadium from '../models/stadium';
 let router = express.Router();
 
 
@@ -73,41 +73,42 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/', (req, res) => {
-  let stadium = req.body;
-  //stadium.owner_id = req.body.owner_id
-  stadium._id = new mongodb.ObjectID(stadium._id); // convert _id to object
-  database.db.collection('stadiums').save(stadium).then((newStadium) => {
-    res.json(newStadium);
-    //console.log(newStadium);
-  })
-});
+// router.post('/', (req, res) => {
+//   let stadium = req.body;
+//   //stadium.owner_id = req.body.owner_id
+//   stadium._id = new mongodb.ObjectID(stadium._id); // convert _id to object
+//   database.db.collection('stadiums').save(stadium).then((newStadium) => {
+//     res.json(newStadium);
+//     //console.log(newStadium);
+//   })
+// });
 
-// router.post('/', function(req, res, next) {
-//   if(req.body.id === undefined) {
-//     let newStadium = new Stadium({
-//       name:req.body.name,
-//       sport:req.body.sport,
-//       url:req.body.url,
-//       owner_id: req.body.owner_id
-//     });
-//     newStadium.save(function(err, res) {
-//       if(err) {
-//         console.log(err);
-//       } else {
-//         console.log(res);
-//       }
-//     })
-//   } else {
-//       Stadium.findByIdAndUpdate(req.body.id, { $set: { name:req.body.name, sport:req.body.sport }}, function(err, stadium) {
-//         if(err) {
-//           console.log(err);
-//         } else {
-//           console.log(stadium);
-//         }
-//       });
-//   }
-// })
+router.post('/', function(req, res, next) {
+  if(req.body.id === undefined) {
+    let newStadium = new Stadium({
+      name:req.body.name,
+      city:req.body.city,
+      sport:req.body.sport,
+      url:req.body.url,
+      owner_id: req.body.owner_id
+    });
+    newStadium.save(function(err, res) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log(res);
+      }
+    })
+  } else {
+      Stadium.findByIdAndUpdate(req.body.id, { $set: { name:req.body.name, sport:req.body.sport }}, function(err, stadium) {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log(stadium);
+        }
+      });
+  }
+});
 
 router.delete('/:id', (req, res) => {
   let stadiumId = new mongodb.ObjectID(req.params['id']);
