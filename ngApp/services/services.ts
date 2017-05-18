@@ -58,7 +58,7 @@ namespace stadiumapp.Services {
     }
 
     constructor($resource) {
-      this.commentResource = $resource('/api/stadiums/:id');
+      this.commentResource = $resource('/api/comments/:id');
     }
   }
   angular.module('stadiumapp').service('commentService', CommentService);

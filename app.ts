@@ -17,6 +17,7 @@ require('./models/user');
 require('./config/passport');
 //-----Added for Mongo-----//
 import stadiums from './api/stadiums';
+import comments from './api/comments';
 import Database from './db';
 Database.connect();
 
@@ -45,7 +46,7 @@ app.use('/userRoutes/api/', users); //-----Modified for Project-----//
 app.use('/', routes);
 // app.use('/users', users);
 app.use('/api/stadiums', stadiums); //-----Added for Mongo-----//
-
+app.use('/api/comments', comments);
 // redirect 404 to home for the sake of AngularJS client-side routes
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {

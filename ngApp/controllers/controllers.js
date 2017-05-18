@@ -80,6 +80,7 @@ var stadiumapp;
                 else {
                     this.currentUser = false;
                 }
+                this.comment = {};
             }
             DialogController.prototype.ok = function () {
                 this.$uibModalInstance.close();
@@ -88,8 +89,10 @@ var stadiumapp;
                 var _this = this;
                 var token = window.localStorage['token'];
                 var payload = JSON.parse(window.atob(token.split('.')[1]));
-                this.comment.author_id = payload.id;
-                this.comment.author.username = payload.username;
+                this.comment.text = this.text;
+                this.comment.author = payload.username;
+                debugger;
+                console.log(this.comment);
                 this.commentService.save(this.comment).then(function () {
                     _this.comments = _this.commentService.list();
                     _this.comment = null;

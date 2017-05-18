@@ -40,7 +40,7 @@ var stadiumapp;
         angular.module('stadiumapp').service('userService', UserService);
         var CommentService = (function () {
             function CommentService($resource) {
-                this.commentResource = $resource('/api/stadiums/:id');
+                this.commentResource = $resource('/api/comments/:id');
             }
             CommentService.prototype.get = function (id) {
                 return this.commentResource.get({ id: id });

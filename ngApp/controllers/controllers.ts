@@ -75,12 +75,30 @@ namespace stadiumapp.Controllers {
 
   class DialogController {
     public currentUser;
+    public comments;
+    public comment;
+    public text;
 
     public ok() {
       this.$uibModalInstance.close();
     }
 
-    constructor(public stadium, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) {
+    public save() {
+      let token = window.localStorage['token'];
+      let payload = JSON.parse(window.atob(token.split('.')[1]));
+      this.comment.text = this.text;
+      this.comment.author = payload.username;
+      debugger;
+      console.log(this.comment);
+      this.commentService.save(this.comment).then(() => {
+      this.comments = this.commentService.list();
+      this.comment = null;
+      this.$window.location.reload();
+      });
+    }
+
+    constructor(public stadium, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance,
+    private commentService:stadiumapp.Services.CommentService, private $window) {
       let token = window.localStorage['token'];
       if(token) {
         let payload = JSON.parse(window.atob(token.split('.')[1]));
@@ -88,7 +106,7 @@ namespace stadiumapp.Controllers {
       } else {
         this.currentUser = false;
       }
-
+      this.comment={};
      }
 
   }

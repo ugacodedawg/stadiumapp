@@ -2,6 +2,7 @@ import * as express from 'express';
 import database from '../db';
 import * as mongodb from 'mongodb';
 import Stadium from '../models/stadium';
+import Comment from '../models/comment';
 let router = express.Router();
 
 // router.post('/', (req, res) => {
@@ -14,7 +15,7 @@ let router = express.Router();
 //   })
 // });
 
-router.post('/:id', function(req, res, next) {
+router.post('/', function(req, res, next) {
   console.log(req.body);
   if(req.body.id === undefined) {
     let newComment = new Comment({

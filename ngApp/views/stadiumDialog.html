@@ -13,11 +13,8 @@
     <br />
     <span class="pull-right">'modal.stadium.comments.date'</span>
     <p>'modal.stadium.comments.text'</p>
-    <!-- <div class="text-right">
-        <a ng-show="modal.currentUser" class="btn btn-success" href="/campgrounds/<%=campground._id%>/comments/new">Add New Comment</a>
-    </div> -->
   </div>
-    <input style="display:block;" size="71" type="text" id="comments" placeholder="comments" ng-model="stadium.comment" />
-    <a ng-show="modal.currentUser" class="btn btn-success" href="/campgrounds/<%=campground._id%>/comments/new">Add New Comment</a>
+    <input ng-show="modal.currentUser" style="display:block;" size="71" type="text" id="text" placeholder="comment" ng-model="text" />
+    <a ng-show="modal.currentUser" class="btn btn-success" ng-click="modal.save()">Add New Comment</a>
     <button class="btn btn-primary" ng-click="modal.ok()">OK</button>
 </div>
