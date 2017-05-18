@@ -1,14 +1,822 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var db_1 = require("../db");
-var mongodb = require("mongodb");
 var router = express.Router();
-router.post('/', function (req, res) {
-    var comment = req.body;
-    comment._id = new mongodb.ObjectID(comment._id);
-    db_1.default.db.collection('comments').save(comment).then(function (newComment) {
-        res.json(newComment);
+router.post('/:id', function (req, res, next) {
+    console.log(req.body);
+    if (req.body.id === undefined) {
+        var newComment = new Comment({
+            text: req.body.text,
+            author: req.body.username
+        });
+        newComment.save(function (err, result) {
+            if (err) {
+                console.log(err);
+                res.end();
+            }
+            else {
+                console.log(result);
+                res.end();
+            }
+        });
+    }
+    router.post('/:id', function (req, res, next) {
+        console.log(req.body);
+        if (req.body.id === undefined) {
+            var newComment = new Comment({
+                text: req.body.text,
+                author: req.body.username
+            });
+            newComment.save(function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.end();
+                }
+                else {
+                    console.log(result);
+                    res.end();
+                }
+            });
+        }
+        router.post('/:id', function (req, res, next) {
+            console.log(req.body);
+            if (req.body.id === undefined) {
+                var newComment = new Comment({
+                    text: req.body.text,
+                    author: req.body.username
+                });
+                newComment.save(function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        res.end();
+                    }
+                    else {
+                        console.log(result);
+                        res.end();
+                    }
+                });
+            }
+            router.post('/:id', function (req, res, next) {
+                console.log(req.body);
+                if (req.body.id === undefined) {
+                    var newComment = new Comment({
+                        text: req.body.text,
+                        author: req.body.username
+                    });
+                    newComment.save(function (err, result) {
+                        if (err) {
+                            console.log(err);
+                            res.end();
+                        }
+                        else {
+                            console.log(result);
+                            res.end();
+                        }
+                    });
+                }
+                router.post('/:id', function (req, res, next) {
+                    console.log(req.body);
+                    if (req.body.id === undefined) {
+                        var newComment = new Comment({
+                            text: req.body.text,
+                            author: req.body.username
+                        });
+                        newComment.save(function (err, result) {
+                            if (err) {
+                                console.log(err);
+                                res.end();
+                            }
+                            else {
+                                console.log(result);
+                                res.end();
+                            }
+                        });
+                    }
+                    router.post('/:id', function (req, res, next) {
+                        console.log(req.body);
+                        if (req.body.id === undefined) {
+                            var newComment = new Comment({
+                                text: req.body.text,
+                                author: req.body.username
+                            });
+                            newComment.save(function (err, result) {
+                                if (err) {
+                                    console.log(err);
+                                    res.end();
+                                }
+                                else {
+                                    console.log(result);
+                                    res.end();
+                                }
+                            });
+                        }
+                        router.post('/:id', function (req, res, next) {
+                            console.log(req.body);
+                            if (req.body.id === undefined) {
+                                var newComment = new Comment({
+                                    text: req.body.text,
+                                    author: req.body.username
+                                });
+                                newComment.save(function (err, result) {
+                                    if (err) {
+                                        console.log(err);
+                                        res.end();
+                                    }
+                                    else {
+                                        console.log(result);
+                                        res.end();
+                                    }
+                                });
+                            }
+                            router.post('/:id', function (req, res, next) {
+                                console.log(req.body);
+                                if (req.body.id === undefined) {
+                                    var newComment = new Comment({
+                                        text: req.body.text,
+                                        author: req.body.username
+                                    });
+                                    newComment.save(function (err, result) {
+                                        if (err) {
+                                            console.log(err);
+                                            res.end();
+                                        }
+                                        else {
+                                            console.log(result);
+                                            res.end();
+                                        }
+                                    });
+                                }
+                                router.post('/:id', function (req, res, next) {
+                                    console.log(req.body);
+                                    if (req.body.id === undefined) {
+                                        var newComment = new Comment({
+                                            text: req.body.text,
+                                            author: req.body.username
+                                        });
+                                        newComment.save(function (err, result) {
+                                            if (err) {
+                                                console.log(err);
+                                                res.end();
+                                            }
+                                            else {
+                                                console.log(result);
+                                                res.end();
+                                            }
+                                        });
+                                    }
+                                    router.post('/:id', function (req, res, next) {
+                                        console.log(req.body);
+                                        if (req.body.id === undefined) {
+                                            var newComment = new Comment({
+                                                text: req.body.text,
+                                                author: req.body.username
+                                            });
+                                            newComment.save(function (err, result) {
+                                                if (err) {
+                                                    console.log(err);
+                                                    res.end();
+                                                }
+                                                else {
+                                                    console.log(result);
+                                                    res.end();
+                                                }
+                                            });
+                                        }
+                                        router.post('/:id', function (req, res, next) {
+                                            console.log(req.body);
+                                            if (req.body.id === undefined) {
+                                                var newComment = new Comment({
+                                                    text: req.body.text,
+                                                    author: req.body.username
+                                                });
+                                                newComment.save(function (err, result) {
+                                                    if (err) {
+                                                        console.log(err);
+                                                        res.end();
+                                                    }
+                                                    else {
+                                                        console.log(result);
+                                                        res.end();
+                                                    }
+                                                });
+                                            }
+                                            router.post('/:id', function (req, res, next) {
+                                                console.log(req.body);
+                                                if (req.body.id === undefined) {
+                                                    var newComment = new Comment({
+                                                        text: req.body.text,
+                                                        author: req.body.username
+                                                    });
+                                                    newComment.save(function (err, result) {
+                                                        if (err) {
+                                                            console.log(err);
+                                                            res.end();
+                                                        }
+                                                        else {
+                                                            console.log(result);
+                                                            res.end();
+                                                        }
+                                                    });
+                                                }
+                                                router.post('/:id', function (req, res, next) {
+                                                    console.log(req.body);
+                                                    if (req.body.id === undefined) {
+                                                        var newComment = new Comment({
+                                                            text: req.body.text,
+                                                            author: req.body.username
+                                                        });
+                                                        newComment.save(function (err, result) {
+                                                            if (err) {
+                                                                console.log(err);
+                                                                res.end();
+                                                            }
+                                                            else {
+                                                                console.log(result);
+                                                                res.end();
+                                                            }
+                                                        });
+                                                    }
+                                                    router.post('/:id', function (req, res, next) {
+                                                        console.log(req.body);
+                                                        if (req.body.id === undefined) {
+                                                            var newComment = new Comment({
+                                                                text: req.body.text,
+                                                                author: req.body.username
+                                                            });
+                                                            newComment.save(function (err, result) {
+                                                                if (err) {
+                                                                    console.log(err);
+                                                                    res.end();
+                                                                }
+                                                                else {
+                                                                    console.log(result);
+                                                                    res.end();
+                                                                }
+                                                            });
+                                                        }
+                                                        router.post('/:id', function (req, res, next) {
+                                                            console.log(req.body);
+                                                            if (req.body.id === undefined) {
+                                                                var newComment = new Comment({
+                                                                    text: req.body.text,
+                                                                    author: req.body.username
+                                                                });
+                                                                newComment.save(function (err, result) {
+                                                                    if (err) {
+                                                                        console.log(err);
+                                                                        res.end();
+                                                                    }
+                                                                    else {
+                                                                        console.log(result);
+                                                                        res.end();
+                                                                    }
+                                                                });
+                                                            }
+                                                            router.post('/:id', function (req, res, next) {
+                                                                console.log(req.body);
+                                                                if (req.body.id === undefined) {
+                                                                    var newComment = new Comment({
+                                                                        text: req.body.text,
+                                                                        author: req.body.username
+                                                                    });
+                                                                    newComment.save(function (err, result) {
+                                                                        if (err) {
+                                                                            console.log(err);
+                                                                            res.end();
+                                                                        }
+                                                                        else {
+                                                                            console.log(result);
+                                                                            res.end();
+                                                                        }
+                                                                    });
+                                                                }
+                                                                router.post('/:id', function (req, res, next) {
+                                                                    console.log(req.body);
+                                                                    if (req.body.id === undefined) {
+                                                                        var newComment = new Comment({
+                                                                            text: req.body.text,
+                                                                            author: req.body.username
+                                                                        });
+                                                                        newComment.save(function (err, result) {
+                                                                            if (err) {
+                                                                                console.log(err);
+                                                                                res.end();
+                                                                            }
+                                                                            else {
+                                                                                console.log(result);
+                                                                                res.end();
+                                                                            }
+                                                                        });
+                                                                    }
+                                                                    router.post('/:id', function (req, res, next) {
+                                                                        console.log(req.body);
+                                                                        if (req.body.id === undefined) {
+                                                                            var newComment = new Comment({
+                                                                                text: req.body.text,
+                                                                                author: req.body.username
+                                                                            });
+                                                                            newComment.save(function (err, result) {
+                                                                                if (err) {
+                                                                                    console.log(err);
+                                                                                    res.end();
+                                                                                }
+                                                                                else {
+                                                                                    console.log(result);
+                                                                                    res.end();
+                                                                                }
+                                                                            });
+                                                                        }
+                                                                        router.post('/:id', function (req, res, next) {
+                                                                            console.log(req.body);
+                                                                            if (req.body.id === undefined) {
+                                                                                var newComment = new Comment({
+                                                                                    text: req.body.text,
+                                                                                    author: req.body.username
+                                                                                });
+                                                                                newComment.save(function (err, result) {
+                                                                                    if (err) {
+                                                                                        console.log(err);
+                                                                                        res.end();
+                                                                                    }
+                                                                                    else {
+                                                                                        console.log(result);
+                                                                                        res.end();
+                                                                                    }
+                                                                                });
+                                                                            }
+                                                                            router.post('/:id', function (req, res, next) {
+                                                                                console.log(req.body);
+                                                                                if (req.body.id === undefined) {
+                                                                                    var newComment = new Comment({
+                                                                                        text: req.body.text,
+                                                                                        author: req.body.username
+                                                                                    });
+                                                                                    newComment.save(function (err, result) {
+                                                                                        if (err) {
+                                                                                            console.log(err);
+                                                                                            res.end();
+                                                                                        }
+                                                                                        else {
+                                                                                            console.log(result);
+                                                                                            res.end();
+                                                                                        }
+                                                                                    });
+                                                                                }
+                                                                                router.post('/:id', function (req, res, next) {
+                                                                                    console.log(req.body);
+                                                                                    if (req.body.id === undefined) {
+                                                                                        var newComment = new Comment({
+                                                                                            text: req.body.text,
+                                                                                            author: req.body.username
+                                                                                        });
+                                                                                        newComment.save(function (err, result) {
+                                                                                            if (err) {
+                                                                                                console.log(err);
+                                                                                                res.end();
+                                                                                            }
+                                                                                            else {
+                                                                                                console.log(result);
+                                                                                                res.end();
+                                                                                            }
+                                                                                        });
+                                                                                    }
+                                                                                    router.post('/:id', function (req, res, next) {
+                                                                                        console.log(req.body);
+                                                                                        if (req.body.id === undefined) {
+                                                                                            var newComment = new Comment({
+                                                                                                text: req.body.text,
+                                                                                                author: req.body.username
+                                                                                            });
+                                                                                            newComment.save(function (err, result) {
+                                                                                                if (err) {
+                                                                                                    console.log(err);
+                                                                                                    res.end();
+                                                                                                }
+                                                                                                else {
+                                                                                                    console.log(result);
+                                                                                                    res.end();
+                                                                                                }
+                                                                                            });
+                                                                                        }
+                                                                                        router.post('/:id', function (req, res, next) {
+                                                                                            console.log(req.body);
+                                                                                            if (req.body.id === undefined) {
+                                                                                                var newComment = new Comment({
+                                                                                                    text: req.body.text,
+                                                                                                    author: req.body.username
+                                                                                                });
+                                                                                                newComment.save(function (err, result) {
+                                                                                                    if (err) {
+                                                                                                        console.log(err);
+                                                                                                        res.end();
+                                                                                                    }
+                                                                                                    else {
+                                                                                                        console.log(result);
+                                                                                                        res.end();
+                                                                                                    }
+                                                                                                });
+                                                                                            }
+                                                                                            router.post('/:id', function (req, res, next) {
+                                                                                                console.log(req.body);
+                                                                                                if (req.body.id === undefined) {
+                                                                                                    var newComment = new Comment({
+                                                                                                        text: req.body.text,
+                                                                                                        author: req.body.username
+                                                                                                    });
+                                                                                                    newComment.save(function (err, result) {
+                                                                                                        if (err) {
+                                                                                                            console.log(err);
+                                                                                                            res.end();
+                                                                                                        }
+                                                                                                        else {
+                                                                                                            console.log(result);
+                                                                                                            res.end();
+                                                                                                        }
+                                                                                                    });
+                                                                                                }
+                                                                                                router.post('/:id', function (req, res, next) {
+                                                                                                    console.log(req.body);
+                                                                                                    if (req.body.id === undefined) {
+                                                                                                        var newComment = new Comment({
+                                                                                                            text: req.body.text,
+                                                                                                            author: req.body.username
+                                                                                                        });
+                                                                                                        newComment.save(function (err, result) {
+                                                                                                            if (err) {
+                                                                                                                console.log(err);
+                                                                                                                res.end();
+                                                                                                            }
+                                                                                                            else {
+                                                                                                                console.log(result);
+                                                                                                                res.end();
+                                                                                                            }
+                                                                                                        });
+                                                                                                    }
+                                                                                                    router.post('/:id', function (req, res, next) {
+                                                                                                        console.log(req.body);
+                                                                                                        if (req.body.id === undefined) {
+                                                                                                            var newComment = new Comment({
+                                                                                                                text: req.body.text,
+                                                                                                                author: req.body.username
+                                                                                                            });
+                                                                                                            newComment.save(function (err, result) {
+                                                                                                                if (err) {
+                                                                                                                    console.log(err);
+                                                                                                                    res.end();
+                                                                                                                }
+                                                                                                                else {
+                                                                                                                    console.log(result);
+                                                                                                                    res.end();
+                                                                                                                }
+                                                                                                            });
+                                                                                                        }
+                                                                                                        router.post('/:id', function (req, res, next) {
+                                                                                                            console.log(req.body);
+                                                                                                            if (req.body.id === undefined) {
+                                                                                                                var newComment = new Comment({
+                                                                                                                    text: req.body.text,
+                                                                                                                    author: req.body.username
+                                                                                                                });
+                                                                                                                newComment.save(function (err, result) {
+                                                                                                                    if (err) {
+                                                                                                                        console.log(err);
+                                                                                                                        res.end();
+                                                                                                                    }
+                                                                                                                    else {
+                                                                                                                        console.log(result);
+                                                                                                                        res.end();
+                                                                                                                    }
+                                                                                                                });
+                                                                                                            }
+                                                                                                            router.post('/:id', function (req, res, next) {
+                                                                                                                console.log(req.body);
+                                                                                                                if (req.body.id === undefined) {
+                                                                                                                    var newComment = new Comment({
+                                                                                                                        text: req.body.text,
+                                                                                                                        author: req.body.username
+                                                                                                                    });
+                                                                                                                    newComment.save(function (err, result) {
+                                                                                                                        if (err) {
+                                                                                                                            console.log(err);
+                                                                                                                            res.end();
+                                                                                                                        }
+                                                                                                                        else {
+                                                                                                                            console.log(result);
+                                                                                                                            res.end();
+                                                                                                                        }
+                                                                                                                    });
+                                                                                                                }
+                                                                                                                router.post('/:id', function (req, res, next) {
+                                                                                                                    console.log(req.body);
+                                                                                                                    if (req.body.id === undefined) {
+                                                                                                                        var newComment = new Comment({
+                                                                                                                            text: req.body.text,
+                                                                                                                            author: req.body.username
+                                                                                                                        });
+                                                                                                                        newComment.save(function (err, result) {
+                                                                                                                            if (err) {
+                                                                                                                                console.log(err);
+                                                                                                                                res.end();
+                                                                                                                            }
+                                                                                                                            else {
+                                                                                                                                console.log(result);
+                                                                                                                                res.end();
+                                                                                                                            }
+                                                                                                                        });
+                                                                                                                    }
+                                                                                                                    router.post('/:id', function (req, res, next) {
+                                                                                                                        console.log(req.body);
+                                                                                                                        if (req.body.id === undefined) {
+                                                                                                                            var newComment = new Comment({
+                                                                                                                                text: req.body.text,
+                                                                                                                                author: req.body.username
+                                                                                                                            });
+                                                                                                                            newComment.save(function (err, result) {
+                                                                                                                                if (err) {
+                                                                                                                                    console.log(err);
+                                                                                                                                    res.end();
+                                                                                                                                }
+                                                                                                                                else {
+                                                                                                                                    console.log(result);
+                                                                                                                                    res.end();
+                                                                                                                                }
+                                                                                                                            });
+                                                                                                                        }
+                                                                                                                        router.post('/:id', function (req, res, next) {
+                                                                                                                            console.log(req.body);
+                                                                                                                            if (req.body.id === undefined) {
+                                                                                                                                var newComment = new Comment({
+                                                                                                                                    text: req.body.text,
+                                                                                                                                    author: req.body.username
+                                                                                                                                });
+                                                                                                                                newComment.save(function (err, result) {
+                                                                                                                                    if (err) {
+                                                                                                                                        console.log(err);
+                                                                                                                                        res.end();
+                                                                                                                                    }
+                                                                                                                                    else {
+                                                                                                                                        console.log(result);
+                                                                                                                                        res.end();
+                                                                                                                                    }
+                                                                                                                                });
+                                                                                                                            }
+                                                                                                                            router.post('/:id', function (req, res, next) {
+                                                                                                                                console.log(req.body);
+                                                                                                                                if (req.body.id === undefined) {
+                                                                                                                                    var newComment = new Comment({
+                                                                                                                                        text: req.body.text,
+                                                                                                                                        author: req.body.username
+                                                                                                                                    });
+                                                                                                                                    newComment.save(function (err, result) {
+                                                                                                                                        if (err) {
+                                                                                                                                            console.log(err);
+                                                                                                                                            res.end();
+                                                                                                                                        }
+                                                                                                                                        else {
+                                                                                                                                            console.log(result);
+                                                                                                                                            res.end();
+                                                                                                                                        }
+                                                                                                                                    });
+                                                                                                                                }
+                                                                                                                                router.post('/:id', function (req, res, next) {
+                                                                                                                                    console.log(req.body);
+                                                                                                                                    if (req.body.id === undefined) {
+                                                                                                                                        var newComment = new Comment({
+                                                                                                                                            text: req.body.text,
+                                                                                                                                            author: req.body.username
+                                                                                                                                        });
+                                                                                                                                        newComment.save(function (err, result) {
+                                                                                                                                            if (err) {
+                                                                                                                                                console.log(err);
+                                                                                                                                                res.end();
+                                                                                                                                            }
+                                                                                                                                            else {
+                                                                                                                                                console.log(result);
+                                                                                                                                                res.end();
+                                                                                                                                            }
+                                                                                                                                        });
+                                                                                                                                    }
+                                                                                                                                    router.post('/:id', function (req, res, next) {
+                                                                                                                                        console.log(req.body);
+                                                                                                                                        if (req.body.id === undefined) {
+                                                                                                                                            var newComment = new Comment({
+                                                                                                                                                text: req.body.text,
+                                                                                                                                                author: req.body.username
+                                                                                                                                            });
+                                                                                                                                            newComment.save(function (err, result) {
+                                                                                                                                                if (err) {
+                                                                                                                                                    console.log(err);
+                                                                                                                                                    res.end();
+                                                                                                                                                }
+                                                                                                                                                else {
+                                                                                                                                                    console.log(result);
+                                                                                                                                                    res.end();
+                                                                                                                                                }
+                                                                                                                                            });
+                                                                                                                                        }
+                                                                                                                                        router.post('/:id', function (req, res, next) {
+                                                                                                                                            console.log(req.body);
+                                                                                                                                            if (req.body.id === undefined) {
+                                                                                                                                                var newComment = new Comment({
+                                                                                                                                                    text: req.body.text,
+                                                                                                                                                    author: req.body.username
+                                                                                                                                                });
+                                                                                                                                                newComment.save(function (err, result) {
+                                                                                                                                                    if (err) {
+                                                                                                                                                        console.log(err);
+                                                                                                                                                        res.end();
+                                                                                                                                                    }
+                                                                                                                                                    else {
+                                                                                                                                                        console.log(result);
+                                                                                                                                                        res.end();
+                                                                                                                                                    }
+                                                                                                                                                });
+                                                                                                                                            }
+                                                                                                                                            router.post('/:id', function (req, res, next) {
+                                                                                                                                                console.log(req.body);
+                                                                                                                                                if (req.body.id === undefined) {
+                                                                                                                                                    var newComment = new Comment({
+                                                                                                                                                        text: req.body.text,
+                                                                                                                                                        author: req.body.username
+                                                                                                                                                    });
+                                                                                                                                                    newComment.save(function (err, result) {
+                                                                                                                                                        if (err) {
+                                                                                                                                                            console.log(err);
+                                                                                                                                                            res.end();
+                                                                                                                                                        }
+                                                                                                                                                        else {
+                                                                                                                                                            console.log(result);
+                                                                                                                                                            res.end();
+                                                                                                                                                        }
+                                                                                                                                                    });
+                                                                                                                                                }
+                                                                                                                                                router.post('/:id', function (req, res, next) {
+                                                                                                                                                    console.log(req.body);
+                                                                                                                                                    if (req.body.id === undefined) {
+                                                                                                                                                        var newComment = new Comment({
+                                                                                                                                                            text: req.body.text,
+                                                                                                                                                            author: req.body.username
+                                                                                                                                                        });
+                                                                                                                                                        newComment.save(function (err, result) {
+                                                                                                                                                            if (err) {
+                                                                                                                                                                console.log(err);
+                                                                                                                                                                res.end();
+                                                                                                                                                            }
+                                                                                                                                                            else {
+                                                                                                                                                                console.log(result);
+                                                                                                                                                                res.end();
+                                                                                                                                                            }
+                                                                                                                                                        });
+                                                                                                                                                    }
+                                                                                                                                                    router.post('/:id', function (req, res, next) {
+                                                                                                                                                        console.log(req.body);
+                                                                                                                                                        if (req.body.id === undefined) {
+                                                                                                                                                            var newComment = new Comment({
+                                                                                                                                                                text: req.body.text,
+                                                                                                                                                                author: req.body.username
+                                                                                                                                                            });
+                                                                                                                                                            newComment.save(function (err, result) {
+                                                                                                                                                                if (err) {
+                                                                                                                                                                    console.log(err);
+                                                                                                                                                                    res.end();
+                                                                                                                                                                }
+                                                                                                                                                                else {
+                                                                                                                                                                    console.log(result);
+                                                                                                                                                                    res.end();
+                                                                                                                                                                }
+                                                                                                                                                            });
+                                                                                                                                                        }
+                                                                                                                                                        router.post('/:id', function (req, res, next) {
+                                                                                                                                                            console.log(req.body);
+                                                                                                                                                            if (req.body.id === undefined) {
+                                                                                                                                                                var newComment = new Comment({
+                                                                                                                                                                    text: req.body.text,
+                                                                                                                                                                    author: req.body.username
+                                                                                                                                                                });
+                                                                                                                                                                newComment.save(function (err, result) {
+                                                                                                                                                                    if (err) {
+                                                                                                                                                                        console.log(err);
+                                                                                                                                                                        res.end();
+                                                                                                                                                                    }
+                                                                                                                                                                    else {
+                                                                                                                                                                        console.log(result);
+                                                                                                                                                                        res.end();
+                                                                                                                                                                    }
+                                                                                                                                                                });
+                                                                                                                                                            }
+                                                                                                                                                            router.post('/:id', function (req, res, next) {
+                                                                                                                                                                console.log(req.body);
+                                                                                                                                                                if (req.body.id === undefined) {
+                                                                                                                                                                    var newComment = new Comment({
+                                                                                                                                                                        text: req.body.text,
+                                                                                                                                                                        author: req.body.username
+                                                                                                                                                                    });
+                                                                                                                                                                    newComment.save(function (err, result) {
+                                                                                                                                                                        if (err) {
+                                                                                                                                                                            console.log(err);
+                                                                                                                                                                            res.end();
+                                                                                                                                                                        }
+                                                                                                                                                                        else {
+                                                                                                                                                                            console.log(result);
+                                                                                                                                                                            res.end();
+                                                                                                                                                                        }
+                                                                                                                                                                    });
+                                                                                                                                                                }
+                                                                                                                                                                router.post('/:id', function (req, res, next) {
+                                                                                                                                                                    console.log(req.body);
+                                                                                                                                                                    if (req.body.id === undefined) {
+                                                                                                                                                                        var newComment = new Comment({
+                                                                                                                                                                            text: req.body.text,
+                                                                                                                                                                            author: req.body.username
+                                                                                                                                                                        });
+                                                                                                                                                                        newComment.save(function (err, result) {
+                                                                                                                                                                            if (err) {
+                                                                                                                                                                                console.log(err);
+                                                                                                                                                                                res.end();
+                                                                                                                                                                            }
+                                                                                                                                                                            else {
+                                                                                                                                                                                console.log(result);
+                                                                                                                                                                                res.end();
+                                                                                                                                                                            }
+                                                                                                                                                                        });
+                                                                                                                                                                    }
+                                                                                                                                                                    router.post('/:id', function (req, res, next) {
+                                                                                                                                                                        console.log(req.body);
+                                                                                                                                                                        if (req.body.id === undefined) {
+                                                                                                                                                                            var newComment = new Comment({
+                                                                                                                                                                                text: req.body.text,
+                                                                                                                                                                                author: req.body.username
+                                                                                                                                                                            });
+                                                                                                                                                                            newComment.save(function (err, result) {
+                                                                                                                                                                                if (err) {
+                                                                                                                                                                                    console.log(err);
+                                                                                                                                                                                    res.end();
+                                                                                                                                                                                }
+                                                                                                                                                                                else {
+                                                                                                                                                                                    console.log(result);
+                                                                                                                                                                                    res.end();
+                                                                                                                                                                                }
+                                                                                                                                                                            });
+                                                                                                                                                                        }
+                                                                                                                                                                        router.post('/:id', function (req, res, next) {
+                                                                                                                                                                            console.log(req.body);
+                                                                                                                                                                            if (req.body.id === undefined) {
+                                                                                                                                                                                var newComment = new Comment({
+                                                                                                                                                                                    text: req.body.text,
+                                                                                                                                                                                    author: req.body.username
+                                                                                                                                                                                });
+                                                                                                                                                                                newComment.save(function (err, result) {
+                                                                                                                                                                                    if (err) {
+                                                                                                                                                                                        console.log(err);
+                                                                                                                                                                                        res.end();
+                                                                                                                                                                                    }
+                                                                                                                                                                                    else {
+                                                                                                                                                                                        console.log(result);
+                                                                                                                                                                                        res.end();
+                                                                                                                                                                                    }
+                                                                                                                                                                                });
+                                                                                                                                                                            }
+                                                                                                                                                                        });
+                                                                                                                                                                        export default router;
+                                                                                                                                                                    });
+                                                                                                                                                                });
+                                                                                                                                                            });
+                                                                                                                                                        });
+                                                                                                                                                    });
+                                                                                                                                                });
+                                                                                                                                            });
+                                                                                                                                        });
+                                                                                                                                    });
+                                                                                                                                });
+                                                                                                                            });
+                                                                                                                        });
+                                                                                                                    });
+                                                                                                                });
+                                                                                                            });
+                                                                                                        });
+                                                                                                    });
+                                                                                                });
+                                                                                            });
+                                                                                        });
+                                                                                    });
+                                                                                });
+                                                                            });
+                                                                        });
+                                                                    });
+                                                                });
+                                                            });
+                                                        });
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
     });
 });
-exports.default = router;

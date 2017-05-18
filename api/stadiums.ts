@@ -5,35 +5,35 @@ import Stadium from '../models/stadium';
 let router = express.Router();
 
 
-// // Get a single stadium by id
-// router.get('/:id', (req, res) => {
-//   Stadium.findById(req.params['id']).then((stadium) => {
-//     res.json(stadium);
-//   });
-// });
-
+// Get a single stadium by id
 router.get('/:id', (req, res) => {
-  let stadiumId = new mongodb.ObjectID(req.params['id']);
-  database.db.collection('stadiums').findOne(stadiumId).then((stadium) => {
+  Stadium.findById(req.params['id']).then((stadium) => {
     res.json(stadium);
   });
 });
 
-// // GET all stadiums
-// router.get('/', (req, res) => {
-//   Stadium.find().then((stadiums)=> {
-//       res.json(stadiums);
-//   }).catch((err) => {
-//       res.status(500);
-//       console.error(err);
-//   })
+// router.get('/:id', (req, res) => {
+//   let stadiumId = new mongodb.ObjectID(req.params['id']);
+//   database.db.collection('stadiums').findOne(stadiumId).then((stadium) => {
+//     res.json(stadium);
+//   });
 // });
 
+// GET all stadiums
 router.get('/', (req, res) => {
-  database.db.collection('stadiums').find().toArray().then((stadiums)=>{
-    res.json(stadiums);
+  Stadium.find().then((stadiums)=> {
+      res.json(stadiums);
+  }).catch((err) => {
+      res.status(500);
+      console.error(err);
   })
 });
+
+// router.get('/', (req, res) => {
+//   database.db.collection('stadiums').find().toArray().then((stadiums)=>{
+//     res.json(stadiums);
+//   })
+// });
 
 // // Create new stadium
 // router.post('/', (req, res) => {
@@ -72,10 +72,9 @@ router.get('/', (req, res) => {
 // });
 
 
-
+// ----- MongoDB style ----- //
 // router.post('/', (req, res) => {
 //   let stadium = req.body;
-//   //stadium.owner_id = req.body.owner_id
 //   stadium._id = new mongodb.ObjectID(stadium._id); // convert _id to object
 //   database.db.collection('stadiums').save(stadium).then((newStadium) => {
 //     res.json(newStadium);
@@ -84,49 +83,55 @@ router.get('/', (req, res) => {
 // });
 
 router.post('/', function(req, res, next) {
+  console.log(req.body);
   if(req.body.id === undefined) {
     let newStadium = new Stadium({
       name:req.body.name,
       city:req.body.city,
       sport:req.body.sport,
       url:req.body.url,
-      owner_id: req.body.owner_id
+      username:req.body.username
+      //owner_id: req.body.owner_id
     });
-    newStadium.save(function(err, res) {
+    newStadium.save(function(err, result) {
       if(err) {
         console.log(err);
+        res.end();
       } else {
-        console.log(res);
+        console.log(result);
+        res.end();
       }
     })
   } else {
-      Stadium.findByIdAndUpdate(req.body.id, { $set: { name:req.body.name, sport:req.body.sport }}, function(err, stadium) {
+      Stadium.findByIdAndUpdate(req.body.id, { $set: { name:req.body.name, city:req.body.city, sport:req.body.sport }}, function(err, stadium) {
         if(err) {
           console.log(err);
+          res.end();
         } else {
           console.log(stadium);
+          res.end();
         }
       });
-  }
+    }
 });
 
-router.delete('/:id', (req, res) => {
-  let stadiumId = new mongodb.ObjectID(req.params['id']);
-  database.db.collection('stadiums').remove({_id:stadiumId}).then(()=> {
-    res.sendStatus(200);
-  });
-
-});
-
-// // Delete stadium
 // router.delete('/:id', (req, res) => {
-//   let stadiumId = req.params.id;
-//   Stadium.remove({_id:stadiumId}).then(() => {
+//   let stadiumId = new mongodb.ObjectID(req.params['id']);
+//   database.db.collection('stadiums').remove({_id:stadiumId}).then(()=> {
 //     res.sendStatus(200);
-//   }).catch((err) => {
-//     res.status(500);
-//     console.log(err);
 //   });
+//
 // });
+
+// Delete stadium
+router.delete('/:id', (req, res) => {
+  let stadiumId = req.params.id;
+  Stadium.remove({_id:stadiumId}).then(() => {
+    res.sendStatus(200);
+  }).catch((err) => {
+    res.status(500);
+    console.log(err);
+  });
+});
 
 export default router;

@@ -6,7 +6,7 @@ var StadiumSchema = new mongoose.Schema({
     city: String,
     sport: String,
     url: String,
-    owner_id: String,
+    username: String,
     comments: [
         {
             type: mongoose.Schema.Types.ObjectId,
