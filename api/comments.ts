@@ -16,11 +16,10 @@ let router = express.Router();
 // });
 
 router.post('/', function(req, res, next) {
-  console.log(req.body);
   if(req.body.id === undefined) {
     let newComment = new Comment({
       text:req.body.text,
-      author:req.body.username
+      author:req.body.author
       //owner_id: req.body.owner_id
     });
     newComment.save(function(err, result) {
@@ -32,17 +31,17 @@ router.post('/', function(req, res, next) {
         res.end();
       }
     });
-  // } else {
-  //     Stadium.findByIdAndUpdate(req.body.id, { $set: { name:req.body.name, city:req.body.city, sport:req.body.sport }}, function(err, stadium) {
-  //       if(err) {
-  //         console.log(err);
-  //         res.end();
-  //       } else {
-  //         console.log(comment);
-  //         res.end();
-  //       }
-  //     });
+  //Stadium.findByIdAndUpdate(stadiumId, { "$push": { "comments": newComment._id }}, { "new": true, "upsert": true }
+  Stadium.findByIdAndUpdate(stadium._id, { $push: { comments: newComment._id }}, { "new": true, "upsert": true }, function(err, comment) {
+  //Stadium.findByIdAndUpdate(req.body.id, { $set: { name:req.body.name, city:req.body.city, sport:req.body.sport }}, function(err, stadium) {
+    if(err) {
+      console.log(err);
+      res.end();
+    } else {
+      console.log(comment);
+      res.end();
     }
+  });
 });
 
 

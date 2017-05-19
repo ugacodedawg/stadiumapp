@@ -88,8 +88,6 @@ namespace stadiumapp.Controllers {
       let payload = JSON.parse(window.atob(token.split('.')[1]));
       this.comment.text = this.text;
       this.comment.author = payload.username;
-      debugger;
-      console.log(this.comment);
       this.commentService.save(this.comment).then(() => {
       this.comments = this.commentService.list();
       this.comment = null;

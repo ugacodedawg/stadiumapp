@@ -96,8 +96,8 @@
     <td><a href="{{stadium.url}}" target="_blank">{{stadium.url}}</a></td>
     <td>{{stadium.username}}</td>
     <td colspan=2 ng-show="stadium.username != controller.currentUser && controller.currentUser != 'admin' ">Must be Owner</td>
-    <td ng-show="stadium.username == controller.currentUser || controller.currentUser == 'admin' "><a class="btn btn-info" href="/edit/{{stadium._id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-    <td ng-show="stadium.username == controller.currentUser || controller.currentUser == 'admin' "><a class="btn btn-danger" href="#" ng-click="controller.remove(stadium._id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+    <td ng-show="stadium.username == controller.currentUser || controller.currentUser == 'admin' "><a class="btn btn-info btn-sm" href="/edit/{{stadium._id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+    <td ng-show="stadium.username == controller.currentUser || controller.currentUser == 'admin' "><a class="btn btn-danger btn-sm" href="#" ng-click="controller.remove(stadium._id)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
   </tr>
 </tbody>
 </table>
