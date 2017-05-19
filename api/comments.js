@@ -16,11 +16,11 @@ router.post('/', function (req, res, next) {
                 res.end();
             }
             else {
-                console.log(result);
+                console.log(result._id);
                 res.end();
             }
         });
-        stadium_1.default.findByIdAndUpdate(stadium._id, { $push: { comments: newComment._id } }, { "new": true, "upsert": true }, function (err, comment) {
+        stadium_1.default.findByIdAndUpdate(this.stadium._id, { $push: { comments: this.result._id } }, { "new": true, "upsert": true }, function (err, comment) {
             if (err) {
                 console.log(err);
                 res.end();

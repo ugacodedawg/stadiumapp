@@ -20,19 +20,18 @@ router.post('/', function(req, res, next) {
     let newComment = new Comment({
       text:req.body.text,
       author:req.body.author
-      //owner_id: req.body.owner_id
     });
     newComment.save(function(err, result) {
       if(err) {
         console.log(err);
         res.end();
       } else {
-        console.log(result);
+        console.log(result._id);
         res.end();
       }
     });
   //Stadium.findByIdAndUpdate(stadiumId, { "$push": { "comments": newComment._id }}, { "new": true, "upsert": true }
-  Stadium.findByIdAndUpdate(stadium._id, { $push: { comments: newComment._id }}, { "new": true, "upsert": true }, function(err, comment) {
+  Stadium.findByIdAndUpdate(this.stadium._id, { $push: { comments: this.result._id }}, { "new": true, "upsert": true }, function(err, comment) {
   //Stadium.findByIdAndUpdate(req.body.id, { $set: { name:req.body.name, city:req.body.city, sport:req.body.sport }}, function(err, stadium) {
     if(err) {
       console.log(err);

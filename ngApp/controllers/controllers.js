@@ -91,6 +91,7 @@ var stadiumapp;
                 var payload = JSON.parse(window.atob(token.split('.')[1]));
                 this.comment.text = this.text;
                 this.comment.author = payload.username;
+                this.comment.stadium_id = this.stadium._id;
                 this.commentService.save(this.comment).then(function () {
                     _this.comments = _this.commentService.list();
                     _this.comment = null;
