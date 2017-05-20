@@ -9,12 +9,16 @@
 </div>
 <div class="modal-footer">
   <div class="well">
-    <strong>'modal.stadium.comments.author.username'</strong>
-    <br />
-    <span class="pull-right">'modal.stadium.comments.date'</span>
-    <p>'modal.stadium.comments.text'</p>
+    <table>
+      <tr ng-repeat="comment in modal.comments">
+        <td align=left><strong>{{comment.author}}</strong><br />
+          {{comment.text}}
+        </td>
+        <!--<span class="pull-right">'modal.stadium.comments[0].date'</span>-->
+      </tr>
+    </table>
   </div>
     <input ng-show="modal.currentUser" style="display:block;" size="71" type="text" id="text" placeholder="comment" ng-model="modal.text" />
-    <a ng-show="modal.currentUser" class="btn btn-success" ng-click="modal.save()">Add New Comment</a>
+    <a ng-show="modal.currentUser" class="btn btn-success" ng-click="modal.save(modal.stadium._id)">Add New Comment</a>
     <button class="btn btn-primary" ng-click="modal.ok()">OK</button>
 </div>

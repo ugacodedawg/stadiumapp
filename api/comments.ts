@@ -21,28 +21,39 @@ router.post('/', function(req, res, next) {
       text:req.body.text,
       author:req.body.author
     });
-    newComment.save(function(err, result) {
+    newComment.save(function(err, newComment) {
       if(err) {
-        console.log(err);
         res.end();
       } else {
-        console.log(result._id);
-        res.end();
+        Stadium.findByIdAndUpdate(req.body.stadium_id, { "$push": { "comments": newComment._id }}, { "new": true, "upsert": true },
+          function (err, updatedCategory) {
+            if (err) {
+              res.send(err)
+            } else {
+              res.send(updatedCategory);
+            }
+          }
+        );
       }
     });
-  //Stadium.findByIdAndUpdate(stadiumId, { "$push": { "comments": newComment._id }}, { "new": true, "upsert": true }
-  Stadium.findByIdAndUpdate(this.stadium._id, { $push: { comments: this.result._id }}, { "new": true, "upsert": true }, function(err, comment) {
-  //Stadium.findByIdAndUpdate(req.body.id, { $set: { name:req.body.name, city:req.body.city, sport:req.body.sport }}, function(err, stadium) {
-    if(err) {
-      console.log(err);
-      res.end();
-    } else {
-      console.log(comment);
-      res.end();
-    }
-  });
+  }
 });
 
+// Get a single stadium by id
+// router.get('/:id', (req, res) => {
+//   Stadium.findById(req.params['id']).then((stadium) => {
+//     res.json(stadium);
+//   });
+// });
+
+router.get('/', (req, res) => {
+  Comment.find().then((comments)=> {
+      res.json(comments);
+  }).catch((err) => {
+      res.status(500);
+      console.error(err);
+  })
+});
 
 // router.get('/', (req, res) => {
 //   database.db.collection('stadiums').find().toArray().then((stadiums)=>{

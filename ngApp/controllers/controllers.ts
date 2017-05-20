@@ -90,9 +90,9 @@ namespace stadiumapp.Controllers {
       this.comment.author = payload.username;
       this.comment.stadium_id = this.stadium._id;
       this.commentService.save(this.comment).then(() => {
-      this.comments = this.commentService.list();
-      this.comment = null;
-      this.$window.location.reload();
+        this.comments = this.commentService.list();
+        this.comment = null;
+        this.$window.location.reload();
       });
     }
 
@@ -105,6 +105,7 @@ namespace stadiumapp.Controllers {
       } else {
         this.currentUser = false;
       }
+      this.comments = this.commentService.list();
       this.comment={};
      }
 
