@@ -105,7 +105,7 @@ namespace stadiumapp.Controllers {
       } else {
         this.currentUser = false;
       }
-      this.comments = this.commentService.list();
+      this.comments = this.commentService.list(this.stadium._id);
       this.comment={};
      }
 

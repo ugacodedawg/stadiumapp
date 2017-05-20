@@ -45,8 +45,8 @@ var stadiumapp;
             CommentService.prototype.get = function (id) {
                 return this.commentResource.get({ id: id });
             };
-            CommentService.prototype.list = function () {
-                return this.commentResource.query();
+            CommentService.prototype.list = function (id) {
+                return this.commentResource.get({ id: id });
             };
             CommentService.prototype.save = function (comment) {
                 return this.commentResource.save(comment).$promise;

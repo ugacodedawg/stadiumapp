@@ -27,12 +27,9 @@ router.post('/', function (req, res, next) {
         });
     }
 });
-router.get('/', function (req, res) {
-    comment_1.default.find().then(function (comments) {
+router.get('/:id', function (req, res) {
+    stadium_1.default.findById(req.params['id']).then(function (stadium) {
         res.json(comments);
-    }).catch(function (err) {
-        res.status(500);
-        console.error(err);
     });
 });
 exports.default = router;

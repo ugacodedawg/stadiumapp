@@ -47,8 +47,8 @@ namespace stadiumapp.Services {
     public get(id) {
       return this.commentResource.get({id:id});
     }
-    public list() {
-      return this.commentResource.query();
+    public list(id) {
+      return this.commentResource.get({id:id});
     }
     public save(comment) {
       return this.commentResource.save(comment).$promise;

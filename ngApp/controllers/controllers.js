@@ -80,7 +80,7 @@ var stadiumapp;
                 else {
                     this.currentUser = false;
                 }
-                this.comments = this.commentService.list();
+                this.comments = this.commentService.list(this.stadium._id);
                 this.comment = {};
             }
             DialogController.prototype.ok = function () {

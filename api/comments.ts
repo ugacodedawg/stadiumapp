@@ -40,20 +40,21 @@ router.post('/', function(req, res, next) {
 });
 
 // Get a single stadium by id
-// router.get('/:id', (req, res) => {
-//   Stadium.findById(req.params['id']).then((stadium) => {
-//     res.json(stadium);
-//   });
-// });
-
-router.get('/', (req, res) => {
-  Comment.find().then((comments)=> {
-      res.json(comments);
-  }).catch((err) => {
-      res.status(500);
-      console.error(err);
-  })
+router.get('/:id', (req, res) => {
+  Stadium.findById(req.params['id']).then((stadium) => {
+    res.json(comments);
+  });
 });
+
+// router.get('/:id', (req, res) => {
+//   //Comments.find({stadium_id:{$eq: req.body._id }}).then((comments) => {
+//   Stadium.findById(req.params['id']).then((comments)=> {
+//       res.json(comments);
+//   }).catch((err) => {
+//       res.status(500);
+//       console.error(err);
+//   })
+// });
 
 // router.get('/', (req, res) => {
 //   database.db.collection('stadiums').find().toArray().then((stadiums)=>{
