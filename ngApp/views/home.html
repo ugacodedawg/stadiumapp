@@ -50,7 +50,7 @@
           <a href="#" ng-click="controller.showModal(stadium)"><h4>{{stadium.name}}</h4></a>
           <p>
             <h6 ng-show="!controller.currentUser">Must be logged in to comment</h6>
-            <h6 ng-show="stadium.username != controller.currentUser && controller.currentUser != 'admin' ">Must be Owner to edit/delete</h6>
+            <h6 style="display:inline;" ng-show="stadium.username != controller.currentUser && controller.currentUser != 'admin' ">Must be Owner to edit/delete</h6>
             <span data-toggle="tooltip" data-placement="top" title="edit" ng-show="stadium.username == controller.currentUser || controller.currentUser == 'admin' ">
               <a class="btn btn-info" href="/edit/{{stadium._id}}">
                 <i class="fa fa-pencil" aria-hidden="true"></i>

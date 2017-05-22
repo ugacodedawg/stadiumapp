@@ -44,6 +44,7 @@ namespace stadiumapp.Services {
 
   export class CommentService {
     private commentResource;
+    
     // public get(id) {
     //   return this.commentResource.get({id:id});
     // }
