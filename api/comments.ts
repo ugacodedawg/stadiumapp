@@ -5,16 +5,6 @@ import Stadium from '../models/stadium';
 import Comment from '../models/comment';
 let router = express.Router();
 
-// router.post('/', (req, res) => {
-//   let comment = req.body;
-//   //stadium.owner_id = req.body.owner_id
-//   comment._id = new mongodb.ObjectID(comment._id); // convert _id to object
-//   database.db.collection('comments').save(comment).then((newComment) => {
-//     res.json(newComment);
-//     //console.log(newStadium);
-//   })
-// });
-
 router.post('/', function(req, res, next) {
   if(req.body.id === undefined) {
     let newComment = new Comment({
@@ -40,32 +30,14 @@ router.post('/', function(req, res, next) {
 });
 
 // Get a single stadium by id
-// router.get('/:id', (req, res) => {
-//   Stadium.findById(req.params['id']).then((stadium) => {
-//     res.json(stadium);
-//   });
-// });
-
-router.get('/', (req, res) => {
-  Comment.find().then((comments)=> {
-      res.json(comments);
-  }).catch((err) => {
-      res.status(500);
-      console.error(err);
+router.get('/:id', (req, res) => {
+  Stadium.findOne({_id: req.params['id']}).populate('comments').exec(function (err, results:any) {
+    if(err) {
+      res.send(err);
+    } else {
+      res.json(results.comments);
+    }
   })
 });
-
-// router.get('/', (req, res) => {
-//   database.db.collection('stadiums').find().toArray().then((stadiums)=>{
-//     res.json(stadiums);
-//   })
-// });
-//
-// router.get('/:id', (req, res) => {
-//   let stadiumId = new mongodb.ObjectID(req.params['id']);
-//   database.db.collection('stadiums').findOne(stadiumId).then((stadium) => {
-//     res.json(stadium);
-//   });
-// });
 
 export default router;

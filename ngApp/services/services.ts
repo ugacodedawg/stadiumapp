@@ -44,11 +44,11 @@ namespace stadiumapp.Services {
 
   export class CommentService {
     private commentResource;
-    public get(id) {
-      return this.commentResource.get({id:id});
-    }
-    public list() {
-      return this.commentResource.query();
+    // public get(id) {
+    //   return this.commentResource.get({id:id});
+    // }
+    public list(id) {
+      return this.commentResource.query({id: id});
     }
     public save(comment) {
       return this.commentResource.save(comment).$promise;

@@ -27,12 +27,14 @@ router.post('/', function (req, res, next) {
         });
     }
 });
-router.get('/', function (req, res) {
-    comment_1.default.find().then(function (comments) {
-        res.json(comments);
-    }).catch(function (err) {
-        res.status(500);
-        console.error(err);
+router.get('/:id', function (req, res) {
+    stadium_1.default.findOne({ _id: req.params['id'] }).populate('comments').exec(function (err, results) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.json(results.comments);
+        }
     });
 });
 exports.default = router;

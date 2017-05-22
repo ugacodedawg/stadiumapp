@@ -105,7 +105,8 @@ namespace stadiumapp.Controllers {
       } else {
         this.currentUser = false;
       }
-      this.comments = this.commentService.list();
+      this.comments = this.commentService.list(stadium._id);
+      // console.log(this.comments);
       this.comment={};
      }
 
@@ -216,40 +217,26 @@ namespace stadiumapp.Controllers {
     }
     angular.module('stadiumapp').controller('NavBarController', NavBarController);
 
-    export class LandingController {
-      public stadiums;
-      public stadium;
-      public slide;
-
-      constructor(private stadiumService:stadiumapp.Services.StadiumService) {
-        this.stadiums = stadiumService.list();
-        this.stadium = 'https://cdn.filestackcontent.com/FXvQpIPMRimgcWSFvfRi';
-        setTimeout(function(){ this.stadium = 'https://cdn.filestackcontent.com/0bO6vh5TZO9lqp8jga8X'; }, 5000);
-    // do something
-}
-        // this.stadiums.forEach(myFunction);
-        //
-        // function myFunction() {
-          // alert("Hello");
-        // }
-        // stadiums.forEach(var i=1;i<this.stadiums.length;i++){
-        //   this.slide=true;
-        //   setTimeout(function(){ alert("Hello"); }, 5000);
-        // }
-
-      }
-
-
-
-    // export class AboutController {
-    //     public message = 'Hello from the about page!';
-    // }
-
-    // export class ModalController {
-    //   public stadium
-    //
-    //   constructor(private $scope) {}
-    //
-    // }
-
+//     export class LandingController {
+//       public stadiums;
+//       public stadium;
+//       public slide;
+//
+//       constructor(private stadiumService:stadiumapp.Services.StadiumService) {
+//         this.stadiums = stadiumService.list();
+//         this.stadium = 'https://cdn.filestackcontent.com/FXvQpIPMRimgcWSFvfRi';
+//         setTimeout(function(){ this.stadium = 'https://cdn.filestackcontent.com/0bO6vh5TZO9lqp8jga8X'; }, 5000);
+//     // do something
+// }
+//         // this.stadiums.forEach(myFunction);
+//         //
+//         // function myFunction() {
+//           // alert("Hello");
+//         // }
+//         // stadiums.forEach(var i=1;i<this.stadiums.length;i++){
+//         //   this.slide=true;
+//         //   setTimeout(function(){ alert("Hello"); }, 5000);
+//         // }
+//
+//       }
 }

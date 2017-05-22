@@ -42,11 +42,8 @@ var stadiumapp;
             function CommentService($resource) {
                 this.commentResource = $resource('/api/comments/:id');
             }
-            CommentService.prototype.get = function (id) {
-                return this.commentResource.get({ id: id });
-            };
-            CommentService.prototype.list = function () {
-                return this.commentResource.query();
+            CommentService.prototype.list = function (id) {
+                return this.commentResource.query({ id: id });
             };
             CommentService.prototype.save = function (comment) {
                 return this.commentResource.save(comment).$promise;
