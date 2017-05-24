@@ -33,6 +33,7 @@ router.get('/:id', function (req, res) {
             res.send(err);
         }
         else {
+            console.log(results.comments);
             res.json(results.comments);
         }
     });

@@ -35,7 +35,6 @@ namespace stadiumapp.Services {
     constructor(private $resource:ng.resource.IResourceService){
       this.LoginResource = this.$resource('/userRoutes/api/Login/Local');
       this.SignUpResource = this.$resource('/userRoutes/api/Register');
-      // this.LogoutResource = this.$resource('/userRoutes/api/Logout');
     }
 
   }
@@ -44,10 +43,7 @@ namespace stadiumapp.Services {
 
   export class CommentService {
     private commentResource;
-    
-    // public get(id) {
-    //   return this.commentResource.get({id:id});
-    // }
+
     public list(id) {
       return this.commentResource.query({id: id});
     }

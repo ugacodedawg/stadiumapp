@@ -17,8 +17,7 @@ router.get('/', function (req, res) {
     });
 });
 router.post('/', function (req, res, next) {
-    console.log(req.body);
-    if (req.body.id === undefined) {
+    if (req.body._id === undefined) {
         var newStadium = new stadium_1.default({
             name: req.body.name,
             city: req.body.city,
@@ -38,7 +37,7 @@ router.post('/', function (req, res, next) {
         });
     }
     else {
-        stadium_1.default.findByIdAndUpdate(req.body.id, { $set: { name: req.body.name, city: req.body.city, sport: req.body.sport } }, function (err, stadium) {
+        stadium_1.default.findByIdAndUpdate(req.body._id, { $set: { name: req.body.name, city: req.body.city, sport: req.body.sport } }, function (err, stadium) {
             if (err) {
                 console.log(err);
                 res.end();
